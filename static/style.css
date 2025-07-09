@@ -1,0 +1,354 @@
+/* Modern Glassmorphism + Animated Gradient BG + New Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&family=Share+Tech+Mono&display=swap');
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Fira Mono', 'Share Tech Mono', monospace;
+    background: linear-gradient(135deg, #101820 0%, #1a2a2f 100%);
+    color: #33ff33;
+    animation: bgMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.container {
+    background: rgba(16,24,32,0.98);
+    box-shadow: 0 0 32px 0 #0f0a;
+    border-radius: 12px;
+    padding: 2.5rem 2rem 2rem 2rem;
+    margin: 2.5rem auto 2rem auto;
+    max-width: 900px;
+    border: 1.5px solid #33ff33;
+}
+
+/* Hacker-style navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: #181c1f;
+    z-index: 100;
+    box-shadow: 0 2px 16px #0f0a;
+    padding: 0.5rem 0;
+    margin-bottom: 0;
+    font-family: 'Share Tech Mono', 'Fira Mono', monospace;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #33ff33;
+    animation: navFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes navFadeIn {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    gap: 2.2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.navbar a {
+    color: #33ff33;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.13rem;
+    transition: color 0.2s, border-bottom 0.2s, letter-spacing 0.2s;
+    padding-bottom: 2px;
+    letter-spacing: 1px;
+    font-family: 'Share Tech Mono', 'Fira Mono', monospace;
+    text-shadow: 0 0 6px #33ff33;
+}
+.navbar a:hover {
+    color: #fff;
+    border-bottom: 2px solid #33ff33;
+    letter-spacing: 2px;
+    background: #33ff3340;
+}
+
+
+h1, h2, h3 {
+    font-family: 'Share Tech Mono', 'Fira Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px #33ff33, 0 0 2px #fff;
+}
+h1 {
+    font-size: 2.3rem;
+    color: #33ff33;
+    margin-bottom: 0.5rem;
+    animation: hackerType 1.5s steps(20, end) 1;
+    border-bottom: 2px solid #33ff33;
+    padding-bottom: 0.3rem;
+}
+@keyframes hackerType {
+    from { width: 0; opacity: 0; }
+    to { width: 100%; opacity: 1; }
+}
+h2 {
+    font-size: 1.5rem;
+    color: #33ff33;
+    margin-bottom: 0.7rem;
+    border-left: 4px solid #33ff33;
+    padding-left: 10px;
+    animation: fadeInUp 1.1s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+h3 {
+    font-size: 1.1rem;
+    color: #33ff33;
+    text-shadow: 0 0 4px #33ff33;
+}
+
+.skills-list, .hobbies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+.skills-list li, .hobbies-list li {
+    background: #181c1f;
+    color: #33ff33;
+    padding: 10px 22px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 8px #0f0a;
+    opacity: 1;
+    transform: none;
+    border: 1.5px solid #33ff33;
+    transition: all 0.6s cubic-bezier(.23,1.02,.64,.97);
+    font-family: 'Fira Mono', 'Share Tech Mono', monospace;
+    text-shadow: 0 0 4px #33ff33;
+}
+.skills-list li:hover, .hobbies-list li:hover {
+    background: #33ff3340;
+    color: #fff;
+    border-color: #fff;
+    letter-spacing: 2px;
+}
+
+/* Section and card effects */
+.project-card, .timeline-item, .testimonial-card {
+    background: #181c1f;
+    border: 1.5px solid #33ff33;
+    color: #33ff33;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px #0f0a;
+    margin-bottom: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    font-family: 'Fira Mono', 'Share Tech Mono', monospace;
+    text-shadow: 0 0 4px #33ff33;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover, .timeline-item:hover, .testimonial-card:hover {
+    transform: scale(1.03) rotate(-1deg);
+    box-shadow: 0 4px 24px #33ff33cc;
+    background: #222b22;
+}
+
+footer {
+    text-align: center;
+    color: #33ff33;
+    background: #181c1f;
+    border-top: 2px solid #33ff33;
+    padding: 1rem 0 0.5rem 0;
+    font-family: 'Share Tech Mono', 'Fira Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-shadow: 0 0 4px #33ff33;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 10px;
+}
+.timeline-item {
+    background: #ede9fe;
+    border-left: 4px solid #a78bfa;
+    padding: 16px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(90,90,180,0.06);
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.7s cubic-bezier(.23,1.02,.64,.97);
+}
+.timeline-item.active {
+    opacity: 1;
+    transform: none;
+}
+
+.testimonial-list {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.testimonial-card {
+    background: #fff7fa;
+    border-left: 4px solid #f472b6;
+    padding: 18px 22px;
+    border-radius: 10px;
+    min-width: 220px;
+    max-width: 320px;
+    box-shadow: 0 2px 8px rgba(90,90,180,0.08);
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.7s cubic-bezier(.23,1.02,.64,.97);
+}
+.testimonial-card.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Reveal animation for scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(.23,1.02,.64,.97);
+}
+.reveal.active {
+    opacity: 1;
+    transform: none;
+}
+body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(120deg, #f4f4f4 0%, #e0e7ff 100%);
+    color: #222;
+    min-height: 100vh;
+}
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(60,60,120,0.12);
+    padding: 40px 30px 30px 30px;
+    animation: fadeIn 1.2s;
+}
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.highlight {
+    color: #5b21b6;
+    background: linear-gradient(90deg, #a78bfa 0%, #f472b6 100%);
+    padding: 0 8px;
+    border-radius: 6px;
+    animation: highlightFade 2s;
+}
+.typewriter {
+    font-size: 1.2rem;
+    color: #6366f1;
+    border-right: 2px solid #6366f1;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 2.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 320px }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #6366f1; }
+}
+@keyframes highlightFade {
+    0% { background: #fff; color: #5b21b6; }
+    100% { background: linear-gradient(90deg, #a78bfa 0%, #f472b6 100%); color: #fff; }
+}
+section {
+    margin: 32px 0;
+    background: #f9fafb;
+    padding: 24px 20px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(90,90,180,0.06);
+    opacity: 0;
+    transform: translateY(40px);
+    animation: sectionFadeIn 1.2s forwards;
+}
+.about { animation-delay: 0.2s; }
+.projects { animation-delay: 0.5s; }
+.contact { animation-delay: 0.8s; }
+@keyframes sectionFadeIn {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.slide-in-left {
+    animation: slideInLeft 1.2s forwards;
+}
+.slide-in-right {
+    animation: slideInRight 1.2s forwards;
+}
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: none; }
+}
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: none; }
+}
+.project-list {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.project-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(90,90,180,0.08);
+    padding: 18px 22px;
+    min-width: 220px;
+    max-width: 260px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 10px;
+}
+.hover-up:hover {
+    transform: translateY(-10px) scale(1.04);
+    box-shadow: 0 8px 24px rgba(90,90,180,0.18);
+}
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #888;
+    font-size: 1rem;
+}
+/* Ensure fade-in always ends visible */
+.fade-in {
+    opacity: 1 !important;
+    animation: fadeIn 1.5s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+a {
+    color: #5b21b6;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+a:hover {
+    color: #f472b6;
+}

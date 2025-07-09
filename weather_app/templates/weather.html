@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body { font-family: 'Montserrat', Arial, sans-serif; background: #f3f4f6; margin: 0; padding: 0; }
+        .container { max-width: 400px; margin: 60px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 16px rgba(60,60,120,0.10); padding: 2rem; }
+        h1 { text-align: center; color: #5b21b6; }
+        form { display: flex; gap: 10px; justify-content: center; margin-bottom: 1.5rem; }
+        input[type="text"] { flex: 1; padding: 0.6rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        button { background: #6366f1; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        button:hover { background: #5b21b6; }
+        .weather-box { text-align: center; margin-top: 1.5rem; }
+        .weather-box img { width: 80px; }
+        .error { color: #e11d48; text-align: center; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if weather %}
+        <div class="weather-box">
+            <h2>{{ weather.city }}</h2>
+            <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="Weather icon">
+            <p style="font-size:2rem;font-weight:700;">{{ weather.temp }}&deg;C</p>
+            <p>{{ weather.desc }}</p>
+        </div>
+        {% endif %}
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
