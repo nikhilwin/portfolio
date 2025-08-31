@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - Nikhil Vishwakarma{% endblock %}
+
+{% block content %}
+<section class="projects-section reveal slide-in-up">
+    <h1>My Projects</h1>
+    <p class="section-intro">Here are some of the projects I've worked on. Each project represents a learning experience and showcases different skills and technologies.</p>
+
+    <div class="projects-grid">
+        <div class="project-card hover-up">
+            <div class="project-header">
+                <h2>Portfolio Website</h2>
+                <div class="project-tech">
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+            </div>
+            <p class="project-description">A modern, responsive portfolio website built with Flask framework. Features dark mode toggle, smooth animations, and mobile-first design. Includes a blog section and contact form integration.</p>
+            <div class="project-links">
+                <a href="https://github.com/nikhilwin/portfolio" target="_blank" class="btn">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <a href="{{ url_for('home') }}" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card hover-up">
+            <div class="project-header">
+                <h2>Heart Disease Prediction</h2>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                </div>
+            </div>
+            <p class="project-description">A machine learning web application that predicts heart disease risk based on patient data. Uses various ML algorithms and provides accurate predictions. Includes data visualization and user-friendly interface.</p>
+            <div class="project-links">
+                <a href="#" class="btn">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card hover-up">
+            <div class="project-header">
+                <h2>Task Management System</h2>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">Bootstrap</span>
+                </div>
+            </div>
+            <p class="project-description">A full-stack task management application with user authentication, CRUD operations, and database integration. Features task categorization and deadline tracking.</p>
+            <div class="project-links">
+                <a href="#" class="btn">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card hover-up">
+            <div class="project-header">
+                <h2>Weather Dashboard</h2>
+                <div class="project-tech">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">HTML5</span>
+                    <span class="tech-tag">CSS3</span>
+                    <span class="tech-tag">API</span>
+                </div>
+            </div>
+            <p class="project-description">An interactive weather dashboard that displays current weather conditions and forecasts. Integrates with weather APIs and features location-based weather updates.</p>
+            <div class="project-links">
+                <a href="#" class="btn">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card hover-up">
+            <div class="project-header">
+                <h2>E-commerce Platform</h2>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Django</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Stripe</span>
+                </div>
+            </div>
+            <p class="project-description">A full-featured e-commerce platform with user authentication, product catalog, shopping cart, and payment integration. Includes admin panel for inventory management.</p>
+            <div class="project-links">
+                <a href="#" class="btn">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            </div>
+        </div>
+
+        <div class="project-card hover-up">
+            <div class="project-header">
+                <h2>Chat Application</h2>
+                <div class="project-tech">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Socket.io</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">React</span>
+                </div>
+            </div>
+            <p class="project-description">A real-time chat application with multiple chat rooms, private messaging, and user authentication. Built with modern web technologies for seamless communication.</p>
+            <div class="project-links">
+                <a href="#" class="btn">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+                <a href="#" class="btn">
+                    <i class="fas fa-external-link-alt"></i> Live Demo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="github-stats">
+        <h2>GitHub Statistics</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <i class="fas fa-code-branch"></i>
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Repositories</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-star"></i>
+                <span class="stat-number">25+</span>
+                <span class="stat-label">Stars</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-code-commit"></i>
+                <span class="stat-number">200+</span>
+                <span class="stat-label">Commits</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-users"></i>
+                <span class="stat-number">10+</span>
+                <span class="stat-label">Contributors</span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
