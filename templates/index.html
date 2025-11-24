@@ -1,404 +1,412 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
+<<<<<<< HEAD <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikhil Vishwakarma | Full Stack Developer</title>
-    <meta name="description"
-        content="Portfolio of Nikhil Vishwakarma, a Full Stack Developer specializing in Python, Flask, and modern web technologies. View my projects and resume.">
-    <meta name="keywords"
-        content="Nikhil Vishwakarma, Full Stack Developer, Python Developer, Flask, Web Development, Portfolio, BCA Student">
-    <meta name="author" content="Nikhil Vishwakarma">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nikhil Vishwakarma | Full Stack Developer</title>
+        <meta name="description"
+            content="Portfolio of Nikhil Vishwakarma, a Full Stack Developer specializing in Python, Flask, and modern web technologies. View my projects and resume.">
+        <meta name="keywords"
+            content="Nikhil Vishwakarma, Full Stack Developer, Python Developer, Flask, Web Development, Portfolio, BCA Student">
+        <meta name="author" content="Nikhil Vishwakarma">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://nikhil-portfolio.com/">
-    <meta property="og:title" content="Nikhil Vishwakarma | Full Stack Developer">
-    <meta property="og:description"
-        content="Portfolio of Nikhil Vishwakarma, a Full Stack Developer specializing in Python, Flask, and modern web technologies.">
-    <meta property="og:image" content="{{ url_for('static', filename='nikhil.jpg') }}">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://nikhil-portfolio.com/">
+        <meta property="og:title" content="Nikhil Vishwakarma | Full Stack Developer">
+        <meta property="og:description"
+            content="Portfolio of Nikhil Vishwakarma, a Full Stack Developer specializing in Python, Flask, and modern web technologies.">
+        <meta property="og:image" content="{{ url_for('static', filename='nikhil.jpg') }}">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://nikhil-portfolio.com/">
-    <meta property="twitter:title" content="Nikhil Vishwakarma | Full Stack Developer">
-    <meta property="twitter:description"
-        content="Portfolio of Nikhil Vishwakarma, a Full Stack Developer specializing in Python, Flask, and modern web technologies.">
-    <meta property="twitter:image" content="{{ url_for('static', filename='nikhil.jpg') }}">
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image">
+        <meta property="twitter:url" content="https://nikhil-portfolio.com/">
+        <meta property="twitter:title" content="Nikhil Vishwakarma | Full Stack Developer">
+        <meta property="twitter:description"
+            content="Portfolio of Nikhil Vishwakarma, a Full Stack Developer specializing in Python, Flask, and modern web technologies.">
+        <meta property="twitter:image" content="{{ url_for('static', filename='nikhil.jpg') }}">
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3">
-</head>
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3">
+    </head>
 
-<body>
-    <div class="cursor-dot" data-cursor-dot></div>
-    <div class="cursor-outline" data-cursor-outline></div>
+    <body>
+        <div class="cursor-dot" data-cursor-dot></div>
+        <div class="cursor-outline" data-cursor-outline></div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-logo">NV.</div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-logo">NV.</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content fade-in-up">
-            <span class="hero-greeting">Hi, my name is</span>
-            <h1 class="hero-name">Nikhil Vishwakarma.</h1>
-            <h2 class="hero-subtitle">I build things for the web.</h2>
-            <p class="hero-description">
-                I'm a dedicated Full Stack Developer specializing in Python and modern web technologies.
-                Currently focused on building accessible, human-centered products and exploring the world of AI/ML.
-            </p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn btn-primary">Check out my work!</a>
-                <a href="{{ url_for('resume') }}" class="btn btn-secondary">View Resume</a>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content fade-in-up">
+                <span class="hero-greeting">Hi, my name is</span>
+                <h1 class="hero-name">Nikhil Vishwakarma.</h1>
+                <h2 class="hero-subtitle">I build things for the web.</h2>
+                <p class="hero-description">
+                    I'm a dedicated Full Stack Developer specializing in Python and modern web technologies.
+                    Currently focused on building accessible, human-centered products and exploring the world of AI/ML.
+                </p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn btn-primary">Check out my work!</a>
+                    <a href="{{ url_for('resume') }}" class="btn btn-secondary">View Resume</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <!-- About Section -->
+            <section id="about" class="about">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Hello! My name is Nikhil and I enjoy creating things that live on the internet.
+                            My interest in web development started back in 2023 when I decided to try editing custom
+                            Tumblr
+                            themes —
+                            turns out hacking together HTML & CSS is pretty fun!
+                        </p>
+                        <p>
+                            Fast-forward to today, and I've had the privilege of working on various projects, from
+                            <span class="highlight">responsive websites</span> to <span class="highlight">complex web
+                                applications</span>.
+                            My main focus these days is building accessible, inclusive products and digital experiences.
+                        </p>
+                        <p>
+                            I'm also passionate about open source and sharing knowledge through technical blogs.
+                            When I'm not coding, you can find me playing football, exploring new places, or gaming.
+                        </p>
+                    </div>
+                    <div class="about-image">
+                        <div class="about-image-wrapper">
+                            <img src="{{ url_for('static', filename='nikhil.jpg') }}" alt="Nikhil Vishwakarma"
+                                class="about-img">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="skills">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-item"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
+                    <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
+                    <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
+                    <div class="skill-item"><i class="fas fa-flask"></i> Flask</div>
+                    <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
+                    <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
+                    <div class="skill-item"><i class="fas fa-brain"></i> AI/ML Basics</div>
+                    <div class="skill-item"><i class="fas fa-code"></i> C/C++</div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="projects">
+                <h2 class="section-title">Some Things I've Built</h2>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card" data-project="weather">
+                        <div class="project-top">
+                            <div class="folder-icon">
+                                <i class="far fa-folder"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/CodeNikz/weather-app" target="_blank"
+                                    aria-label="GitHub Link"><i class="fab fa-github"></i></a>
+                                <a href="{{ url_for('weather_project') }}" aria-label="External Link"><i
+                                        class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Weather App</h3>
+                        <p class="project-desc">
+                            A real-time weather application providing location-based updates and 5-day forecasts.
+                            Integrates OpenWeatherMap API with robust error handling and caching for optimal
+                            performance.
+                        </p>
+                        <div class="project-tech">
+                            <span>Flask</span>
+                            <span>JavaScript</span>
+                            <span>OpenWeather API</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="project-card" data-project="task">
+                        <div class="project-top">
+                            <div class="folder-icon">
+                                <i class="far fa-folder"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
+                                <a href="{{ url_for('task_manager_project') }}" aria-label="External Link"><i
+                                        class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Task Manager</h3>
+                        <p class="project-desc">
+                            A full-stack task management solution featuring task categorization, priority settings,
+                            and deadline reminders. Built with a focus on data persistence and user experience.
+                        </p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>SQLite</span>
+                            <span>Bootstrap</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="project-card" data-project="portfolio">
+                        <div class="project-top">
+                            <div class="folder-icon">
+                                <i class="far fa-folder"></i>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/nikhilwin/portfolio" target="_blank"
+                                    aria-label="GitHub Link"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p class="project-desc">
+                            The site you're looking at right now! A responsive personal portfolio featuring modern CSS
+                            animations,
+                            dark mode aesthetic, and smooth scrolling.
+                        </p>
+                        <div class="project-tech">
+                            <span>Flask</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact">
+                <div class="contact-content">
+                    <p class="highlight">What's Next?</p>
+                    <h2>Get In Touch</h2>
+                    <p>
+                        I'm currently looking for new opportunities and my inbox is always open.
+                        Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                    </p>
+
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+
+                    <div
+                        style="margin-top: var(--spacing-lg); display: flex; justify-content: center; gap: var(--spacing-md);">
+                        <a href="https://github.com/CodeNikz" target="_blank"
+                            style="font-size: 1.5rem; color: var(--text-secondary); transition: color 0.2s;"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb" target="_blank"
+                            style="font-size: 1.5rem; color: var(--text-secondary); transition: color 0.2s;"><i
+                                class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/n1khil_creates/" target="_blank"
+                            style="font-size: 1.5rem; color: var(--text-secondary); transition: color 0.2s;"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>Designed & Built by Nikhil Vishwakarma</p>
+        </footer>
+
+        <!-- Project Modal Template -->
+        <div id="project-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2 id="modal-title">Project Title</h2>
+                <div class="modal-body">
+                    <p id="modal-desc">Project description goes here...</p>
+                    <div class="modal-tech" id="modal-tech"></div>
+                    <!-- Placeholder for images -->
+                    <div class="modal-images"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+
+    </html>
+    =======
+    {% extends "base.html" %}
+
+    {% block title %}Home - Nikhil Vishwakarma{% endblock %}
+
+    {% block content %}
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
+    <section id="home" class="home-section reveal slide-in-up">
+        <div class="profile-header">
+            <div class="profile-image">
+                <img src="{{ url_for('static', filename='images/nikhil.jpg') }}" alt="Nikhil Vishwakarma"
+                    class="profile-img" />
+            </div>
+            <h1 class="animate-text text-glow">Nikhil Vishwakarma</h1>
+            <div class="typing-text">
+                <p class="typing">BCA Student | Full Stack Developer | Python Enthusiast</p>
+            </div>
+            <div class="quick-links">
+                <a href="https://github.com/nikhilwin" target="_blank" class="social-button pulse">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank"
+                    class="social-button pulse">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:vish.nikhil01@gmail.com" class="social-button pulse">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="{{ url_for('static', filename='resume.pdf') }}" class="social-button pulse" target="_blank">
+                    <i class="fas fa-file-alt"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <div class="container">
-        <!-- About Section -->
-        <section id="about" class="about">
-            <h2 class="section-title">About Me</h2>
+    <section id="about" class="reveal">
+        <h2>About Me</h2>
+        <div class="project-card">
             <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Hello! My name is Nikhil and I enjoy creating things that live on the internet.
-                        My interest in web development started back in 2023 when I decided to try editing custom Tumblr
-                        themes —
-                        turns out hacking together HTML & CSS is pretty fun!
-                    </p>
-                    <p>
-                        Fast-forward to today, and I've had the privilege of working on various projects, from
-                        <span class="highlight">responsive websites</span> to <span class="highlight">complex web
-                            applications</span>.
-                        My main focus these days is building accessible, inclusive products and digital experiences.
-                    </p>
-                    <p>
-                        I'm also passionate about open source and sharing knowledge through technical blogs.
-                        When I'm not coding, you can find me playing football, exploring new places, or gaming.
-                    </p>
-                </div>
-                <div class="about-image">
-                    <div class="about-image-wrapper">
-                        <img src="{{ url_for('static', filename='nikhil.jpg') }}" alt="Nikhil Vishwakarma"
-                            class="about-img">
+                <p class="highlight-text">Hello World! I'm Nikhil Vishwakarma 👋</p>
+                <p>A passionate BCA student with a love for coding and technology. I specialize in full-stack
+                    development and have a keen interest in AI/ML. Currently exploring the fascinating world of
+                    artificial intelligence and machine learning.</p>
+                <p>My journey in tech started with Python programming, and since then, I've been constantly learning and
+                    building projects that solve real-world problems.</p>
+                <div class="code-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-code"></i>
+                        <span>10+ Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-star"></i>
+                        <span>Problem Solver</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-laptop-code"></i>
+                        <span>Full Stack Dev</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <h2 class="section-title">Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-item"><i class="fab fa-python"></i> Python</div>
-                <div class="skill-item"><i class="fab fa-js"></i> JavaScript</div>
-                <div class="skill-item"><i class="fab fa-html5"></i> HTML5</div>
-                <div class="skill-item"><i class="fab fa-css3-alt"></i> CSS3</div>
-                <div class="skill-item"><i class="fas fa-flask"></i> Flask</div>
-                <div class="skill-item"><i class="fab fa-git-alt"></i> Git</div>
-                <div class="skill-item"><i class="fas fa-database"></i> SQL</div>
-                <div class="skill-item"><i class="fas fa-brain"></i> AI/ML Basics</div>
-                <div class="skill-item"><i class="fas fa-code"></i> C/C++</div>
+    <section id="skills" class="reveal">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skills-category">
+                <h3><i class="fas fa-code"></i> Programming</h3>
+                <ul class="skills-list">
+                    <li><i class="fab fa-python"></i> Python</li>
+                    <li><i class="fas fa-code"></i> C</li>
+                    <li><i class="fab fa-js"></i> JavaScript</li>
+                </ul>
             </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="projects">
-            <h2 class="section-title">Some Things I've Built</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card" data-project="weather">
-                    <div class="project-top">
-                        <div class="folder-icon">
-                            <i class="far fa-folder"></i>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/CodeNikz/weather-app" target="_blank"
-                                aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                            <a href="{{ url_for('weather_project') }}" aria-label="External Link"><i
-                                    class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Weather App</h3>
-                    <p class="project-desc">
-                        A real-time weather application providing location-based updates and 5-day forecasts.
-                        Integrates OpenWeatherMap API with robust error handling and caching for optimal performance.
-                    </p>
-                    <div class="project-tech">
-                        <span>Flask</span>
-                        <span>JavaScript</span>
-                        <span>OpenWeather API</span>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card" data-project="task">
-                    <div class="project-top">
-                        <div class="folder-icon">
-                            <i class="far fa-folder"></i>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                            <a href="{{ url_for('task_manager_project') }}" aria-label="External Link"><i
-                                    class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Task Manager</h3>
-                    <p class="project-desc">
-                        A full-stack task management solution featuring task categorization, priority settings,
-                        and deadline reminders. Built with a focus on data persistence and user experience.
-                    </p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>SQLite</span>
-                        <span>Bootstrap</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card" data-project="portfolio">
-                    <div class="project-top">
-                        <div class="folder-icon">
-                            <i class="far fa-folder"></i>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" aria-label="GitHub Link"><i class="fab fa-github"></i></a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Portfolio Website</h3>
-                    <p class="project-desc">
-                        The site you're looking at right now! A responsive personal portfolio featuring modern CSS
-                        animations,
-                        dark mode aesthetic, and smooth scrolling.
-                    </p>
-                    <div class="project-tech">
-                        <span>Flask</span>
-                        <span>HTML5</span>
-                        <span>CSS3</span>
-                    </div>
-                </div>
+            <div class="skills-category">
+                <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
+                <ul class="skills-list">
+                    <li><i class="fab fa-html5"></i> HTML5</li>
+                    <li><i class="fab fa-css3-alt"></i> CSS3</li>
+                    <li><i class="fab fa-flask"></i> Flask</li>
+                    <li><i class="fas fa-database"></i> SQL</li>
+                </ul>
             </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="contact-content">
-                <p class="highlight">What's Next?</p>
-                <h2>Get In Touch</h2>
-                <p>
-                    I'm currently looking for new opportunities and my inbox is always open.
-                    Whether you have a question or just want to say hi, I'll try my best to get back to you!
-                </p>
-
-                <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <input type="text" id="name" name="name" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="email" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-
-                <div
-                    style="margin-top: var(--spacing-lg); display: flex; justify-content: center; gap: var(--spacing-md);">
-                    <a href="https://github.com/CodeNikz" target="_blank"
-                        style="font-size: 1.5rem; color: var(--text-secondary); transition: color 0.2s;"><i
-                            class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb" target="_blank"
-                        style="font-size: 1.5rem; color: var(--text-secondary); transition: color 0.2s;"><i
-                            class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/n1khil_creates/" target="_blank"
-                        style="font-size: 1.5rem; color: var(--text-secondary); transition: color 0.2s;"><i
-                            class="fab fa-instagram"></i></a>
-                </div>
+            <div class="skills-category">
+                <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                <ul class="skills-list">
+                    <li><i class="fab fa-git-alt"></i> Git</li>
+                    <li><i class="fab fa-github"></i> GitHub</li>
+                    <li><i class="fas fa-terminal"></i> Command Line</li>
+                    <li><i class="fas fa-database"></i> MySQL</li>
+                </ul>
             </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>Designed & Built by Nikhil Vishwakarma</p>
-    </footer>
-
-    <!-- Project Modal Template -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-title">Project Title</h2>
-            <div class="modal-body">
-                <p id="modal-desc">Project description goes here...</p>
-                <div class="modal-tech" id="modal-tech"></div>
-                <!-- Placeholder for images -->
-                <div class="modal-images"></div>
+            <div class="skills-category">
+                <h3><i class="fas fa-brain"></i> Learning</h3>
+                <ul class="skills-list">
+                    <li><i class="fas fa-robot"></i> AI/ML</li>
+                    <li><i class="fab fa-react"></i> React</li>
+                    <li><i class="fas fa-network-wired"></i> APIs</li>
+                </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-
-</html>
-=======
-{% extends "base.html" %}
-
-{% block title %}Home - Nikhil Vishwakarma{% endblock %}
-
-{% block content %}
-<div id="loading-screen">
-    <div class="loader"></div>
-</div>
-
-<section id="home" class="home-section reveal slide-in-up">
-    <div class="profile-header">
-        <div class="profile-image">
-            <img src="{{ url_for('static', filename='images/nikhil.jpg') }}" alt="Nikhil Vishwakarma" class="profile-img" />
-        </div>
-        <h1 class="animate-text text-glow">Nikhil Vishwakarma</h1>
-        <div class="typing-text">
-            <p class="typing">BCA Student | Full Stack Developer | Python Enthusiast</p>
-        </div>
-        <div class="quick-links">
-            <a href="https://github.com/nikhilwin" target="_blank" class="social-button pulse">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank" class="social-button pulse">
-                <i class="fab fa-linkedin"></i>
-            </a>
-            <a href="mailto:vish.nikhil01@gmail.com" class="social-button pulse">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="{{ url_for('static', filename='resume.pdf') }}" class="social-button pulse" target="_blank">
-                <i class="fas fa-file-alt"></i>
-            </a>
-        </div>
-    </div>
-</section>
-
-<section id="about" class="reveal">
-    <h2>About Me</h2>
-    <div class="project-card">
-        <div class="about-content">
-            <p class="highlight-text">Hello World! I'm Nikhil Vishwakarma 👋</p>
-            <p>A passionate BCA student with a love for coding and technology. I specialize in full-stack development and have a keen interest in AI/ML. Currently exploring the fascinating world of artificial intelligence and machine learning.</p>
-            <p>My journey in tech started with Python programming, and since then, I've been constantly learning and building projects that solve real-world problems.</p>
-            <div class="code-stats">
-                <div class="stat-item">
-                    <i class="fas fa-code"></i>
-                    <span>10+ Projects</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-star"></i>
-                    <span>Problem Solver</span>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <span>Full Stack Dev</span>
-                </div>
+    <section id="projects" class="reveal">
+        <h2>Projects</h2>
+        <div class="project-list">
+            <div class="project-card hover-up">
+                <h3>Portfolio Website</h3>
+                <p>A modern portfolio website built with Flask and animated CSS</p>
+                <p class="technologies">Flask, HTML5, CSS3, JavaScript</p>
+            </div>
+            <div class="project-card hover-up">
+                <h3>Project 2</h3>
+                <p>Description of your second project</p>
+                <p class="technologies">Technologies used</p>
+            </div>
+            <div class="project-card hover-up">
+                <h3>Project 3</h3>
+                <p>Description of your third project</p>
+                <p class="technologies">Technologies used</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="skills" class="reveal">
-    <h2>Skills & Expertise</h2>
-    <div class="skills-grid">
-        <div class="skills-category">
-            <h3><i class="fas fa-code"></i> Programming</h3>
-            <ul class="skills-list">
-                <li><i class="fab fa-python"></i> Python</li>
-                <li><i class="fas fa-code"></i> C</li>
-                <li><i class="fab fa-js"></i> JavaScript</li>
-            </ul>
+    <section id="contact" class="reveal">
+        <h2>Contact Me</h2>
+        <div class="project-card">
+            <p>I'm always open to new opportunities and collaborations.</p>
+            <div class="social-links">
+                <a href="https://github.com/nikhilwin" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank"><i
+                        class="fab fa-linkedin"></i> LinkedIn</a>
+                <a href="mailto:vish.nikhil01@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+            </div>
         </div>
-        <div class="skills-category">
-            <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
-            <ul class="skills-list">
-                <li><i class="fab fa-html5"></i> HTML5</li>
-                <li><i class="fab fa-css3-alt"></i> CSS3</li>
-                <li><i class="fab fa-flask"></i> Flask</li>
-                <li><i class="fas fa-database"></i> SQL</li>
-            </ul>
-        </div>
-        <div class="skills-category">
-            <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
-            <ul class="skills-list">
-                <li><i class="fab fa-git-alt"></i> Git</li>
-                <li><i class="fab fa-github"></i> GitHub</li>
-                <li><i class="fas fa-terminal"></i> Command Line</li>
-                <li><i class="fas fa-database"></i> MySQL</li>
-            </ul>
-        </div>
-        <div class="skills-category">
-            <h3><i class="fas fa-brain"></i> Learning</h3>
-            <ul class="skills-list">
-                <li><i class="fas fa-robot"></i> AI/ML</li>
-                <li><i class="fab fa-react"></i> React</li>
-                <li><i class="fas fa-network-wired"></i> APIs</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section id="projects" class="reveal">
-    <h2>Projects</h2>
-    <div class="project-list">
-        <div class="project-card hover-up">
-            <h3>Portfolio Website</h3>
-            <p>A modern portfolio website built with Flask and animated CSS</p>
-            <p class="technologies">Flask, HTML5, CSS3, JavaScript</p>
-        </div>
-        <div class="project-card hover-up">
-            <h3>Project 2</h3>
-            <p>Description of your second project</p>
-            <p class="technologies">Technologies used</p>
-        </div>
-        <div class="project-card hover-up">
-            <h3>Project 3</h3>
-            <p>Description of your third project</p>
-            <p class="technologies">Technologies used</p>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="reveal">
-    <h2>Contact Me</h2>
-    <div class="project-card">
-        <p>I'm always open to new opportunities and collaborations.</p>
-        <div class="social-links">
-            <a href="https://github.com/nikhilwin" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="mailto:vish.nikhil01@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        </div>
-    </div>
-</section>
-{% endblock %}
->>>>>>> ba088f69f2429875e165baf9b49f255804891d99
+    </section>
+    {% endblock %}
+    >>>>>>> ba088f69f2429875e165baf9b49f255804891d99
