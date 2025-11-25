@@ -22,5 +22,9 @@ def task_manager_project():
 def ping():
     return "pong"
 
+@app.route('/resume')
+def resume():
+    return render_template('resume.html', theme=session.get('theme', 'light'))
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5003)

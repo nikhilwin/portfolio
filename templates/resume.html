@@ -1,275 +1,311 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume | Nikhil Vishwakarma</title>
-    <meta name="description" content="Resume of Nikhil Vishwakarma, Full Stack Developer.">
+{% block title %}Resume - Nikhil Vishwakarma{% endblock %}
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/polish.css') }}">
+<style>
+    .resume-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    .resume-header {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=3">
+    .resume-name {
+        font-size: 3rem;
+        color: #33ff33;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 0 10px rgba(51, 255, 51, 0.3);
+    }
 
-    <style>
+    .resume-role {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-bottom: 2rem;
+    }
+
+    .resume-section {
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        color: #33ff33;
+        border-bottom: 1px solid rgba(51, 255, 51, 0.3);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .resume-item {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: rgba(24, 28, 31, 0.5);
+        border: 1px solid rgba(51, 255, 51, 0.1);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .resume-item:hover {
+        background: rgba(24, 28, 31, 0.8);
+        border-color: rgba(51, 255, 51, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+
+    .item-title {
+        font-size: 1.3rem;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .item-subtitle {
+        color: #aaa;
+        font-size: 1rem;
+    }
+
+    .item-date {
+        color: #33ff33;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+    }
+
+    .item-description {
+        color: #ccc;
+        line-height: 1.6;
+    }
+
+    .item-description ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .item-description li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+
+    .item-description li::before {
+        content: '>';
+        position: absolute;
+        left: 0;
+        color: #33ff33;
+    }
+
+    .skills-grid-resume {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .skill-group h4 {
+        color: #fff;
+        margin-bottom: 1rem;
+        border-left: 3px solid #33ff33;
+        padding-left: 1rem;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .skill-tag {
+        background: rgba(51, 255, 51, 0.1);
+        color: #33ff33;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        border: 1px solid rgba(51, 255, 51, 0.2);
+    }
+
+    .download-btn-container {
+        text-align: center;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .download-btn {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background: transparent;
+        color: #33ff33;
+        border: 2px solid #33ff33;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .download-btn:hover {
+        background: #33ff33;
+        color: #000;
+        box-shadow: 0 0 20px rgba(51, 255, 51, 0.4);
+    }
+
+    @media (max-width: 768px) {
         .resume-container {
-            max-width: 900px;
-            margin: 100px auto;
-            padding: 0 var(--spacing-md);
+            padding: 1rem;
         }
 
-        .resume-header {
-            text-align: center;
-            margin-bottom: var(--spacing-lg);
-            border-bottom: 1px solid var(--bg-card-hover);
-            padding-bottom: var(--spacing-md);
+        .item-header {
+            flex-direction: column;
         }
 
-        .resume-name {
-            font-size: 3rem;
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-xs);
+        .item-date {
+            margin-top: 0.5rem;
         }
+    }
+</style>
+{% endblock %}
 
-        .resume-role {
-            font-family: var(--font-code);
-            color: var(--accent-primary);
-            font-size: 1.2rem;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .resume-contact {
-            display: flex;
-            justify-content: center;
-            gap: var(--spacing-md);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            flex-wrap: wrap;
-        }
-
-        .resume-contact a {
-            color: var(--text-secondary);
-        }
-
-        .resume-contact a:hover {
-            color: var(--accent-primary);
-        }
-
-        .resume-section {
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .resume-section-title {
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            border-bottom: 2px solid var(--accent-primary);
-            display: inline-block;
-            margin-bottom: var(--spacing-md);
-            padding-bottom: 5px;
-        }
-
-        .resume-item {
-            margin-bottom: var(--spacing-md);
-        }
-
-        .resume-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 5px;
-        }
-
-        .resume-item-title {
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-
-        .resume-item-subtitle {
-            font-family: var(--font-code);
-            color: var(--accent-primary);
-            font-size: 0.9rem;
-        }
-
-        .resume-item-date {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            font-family: var(--font-code);
-        }
-
-        .resume-item-desc {
-            color: var(--text-secondary);
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-
-        .resume-item-desc li {
-            margin-bottom: 5px;
-        }
-
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background: var(--bg-card);
-            padding: 5px 12px;
-            border-radius: 4px;
-            font-family: var(--font-code);
-            font-size: 0.85rem;
-            color: var(--accent-primary);
-            border: 1px solid transparent;
-        }
-
-        .skill-tag:hover {
-            border-color: var(--accent-primary);
-            background: var(--bg-card-hover);
-        }
-
-        .download-section {
-            text-align: center;
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
-        }
-
-        @media (max-width: 768px) {
-            .resume-item-header {
-                flex-direction: column;
-            }
-
-            .resume-item-date {
-                margin-top: 5px;
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="cursor-dot" data-cursor-dot></div>
-    <div class="cursor-outline" data-cursor-outline></div>
-
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-logo"><a href="/">NV.</a></div>
-        <ul class="nav-links">
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#skills">Skills</a></li>
-            <li><a href="/#projects">Projects</a></li>
-            <li><a href="/#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <div class="resume-container fade-in-up">
-        <header class="resume-header">
-            <h1 class="resume-name">Nikhil Vishwakarma</h1>
-            <p class="resume-role">Full Stack Developer | BCA Student</p>
-            <div class="resume-contact">
-                <span><i class="fas fa-envelope"></i> vish.nikhil01@gmail.com</span>
-                <span><i class="fas fa-map-marker-alt"></i> India</span>
-                <a href="https://github.com/CodeNikz" target="_blank"><i class="fab fa-github"></i>
-                    github.com/CodeNikz</a>
-                <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb" target="_blank"><i
-                        class="fab fa-linkedin"></i> linkedin.com/in/nikhil-vishwakarma</a>
-            </div>
-        </header>
-
-        <section class="resume-section">
-            <h2 class="resume-section-title">Education</h2>
-            <div class="resume-item">
-                <div class="resume-item-header">
-                    <h3 class="resume-item-title">Bachelor of Computer Applications (BCA)</h3>
-                    <span class="resume-item-date">2023 - Present</span>
-                </div>
-                <p class="resume-item-subtitle">University Name / College Name</p>
-                <ul class="resume-item-desc">
-                    <li>Focusing on Software Engineering, Data Structures, and Web Development.</li>
-                    <li>Active member of the college coding club.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2 class="resume-section-title">Technical Skills</h2>
-            <div class="skills-list">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">JavaScript (ES6+)</span>
-                <span class="skill-tag">Flask</span>
-                <span class="skill-tag">HTML5 & CSS3</span>
-                <span class="skill-tag">SQL / SQLite</span>
-                <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">C/C++</span>
-                <span class="skill-tag">AI/ML Basics</span>
-                <span class="skill-tag">Bootstrap</span>
-                <span class="skill-tag">GSAP</span>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2 class="resume-section-title">Projects</h2>
-
-            <div class="resume-item">
-                <div class="resume-item-header">
-                    <h3 class="resume-item-title">Weather App</h3>
-                    <span class="resume-item-date">2024</span>
-                </div>
-                <p class="resume-item-subtitle">Flask, JavaScript, OpenWeather API</p>
-                <ul class="resume-item-desc">
-                    <li>Developed a real-time weather application with location-based updates.</li>
-                    <li>Implemented 5-day forecast and dynamic background changes.</li>
-                    <li>Optimized API calls with caching for better performance.</li>
-                </ul>
-            </div>
-
-            <div class="resume-item">
-                <div class="resume-item-header">
-                    <h3 class="resume-item-title">Task Manager</h3>
-                    <span class="resume-item-date">2024</span>
-                </div>
-                <p class="resume-item-subtitle">Python, SQLite, Bootstrap</p>
-                <ul class="resume-item-desc">
-                    <li>Built a full-stack task management system with CRUD operations.</li>
-                    <li>Features include priority sorting, due dates, and responsive UI.</li>
-                </ul>
-            </div>
-
-            <div class="resume-item">
-                <div class="resume-item-header">
-                    <h3 class="resume-item-title">Portfolio Website</h3>
-                    <span class="resume-item-date">2025</span>
-                </div>
-                <p class="resume-item-subtitle">Flask, HTML/CSS, GSAP, Vanta.js</p>
-                <ul class="resume-item-desc">
-                    <li>Designed and built a professional portfolio with a custom dark mode design system.</li>
-                    <li>Integrated 3D background effects and advanced scroll animations.</li>
-                </ul>
-            </div>
-        </section>
-
-        <div class="download-section">
-            <a href="{{ url_for('static', filename='resume.pdf') }}" class="btn btn-primary" target="_blank">
-                <i class="fas fa-download"></i> Download PDF Version
-            </a>
+{% block content %}
+<div class="resume-container fade-in-up">
+    <header class="resume-header">
+        <h1 class="resume-name">Nikhil Vishwakarma</h1>
+        <p class="resume-role">Full Stack Developer & AI Enthusiast</p>
+        <div class="social-links">
+            <a href="mailto:vish.nikhil01@gmail.com"><i class="fas fa-envelope"></i> vish.nikhil01@gmail.com</a>
+            <span style="margin: 0 1rem; color: #33ff33;">|</span>
+            <a href="https://github.com/nikhilwin" target="_blank"><i class="fab fa-github"></i>
+                github.com/nikhilwin</a>
         </div>
+    </header>
+
+    <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-user-graduate"></i> Education</h2>
+
+        <div class="resume-item tilt-card">
+            <div class="item-header">
+                <div>
+                    <div class="item-title">Bachelor of Computer Applications (BCA)</div>
+                    <div class="item-subtitle">University Name</div>
+                </div>
+                <div class="item-date">2021 - Present</div>
+            </div>
+            <div class="item-description">
+                <p>Focusing on Software Development, Data Structures, and Database Management.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Experience</h2>
+
+        <div class="resume-item tilt-card">
+            <div class="item-header">
+                <div>
+                    <div class="item-title">Full Stack Developer Intern</div>
+                    <div class="item-subtitle">Company Name</div>
+                </div>
+                <div class="item-date">Jan 2023 - Present</div>
+            </div>
+            <div class="item-description">
+                <ul>
+                    <li>Developed and maintained web applications using Flask and React.</li>
+                    <li>Collaborated with cross-functional teams to define, design, and ship new features.</li>
+                    <li>Optimized application performance and fixed bugs.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-project-diagram"></i> Key Projects</h2>
+
+        <div class="resume-item tilt-card">
+            <div class="item-header">
+                <div>
+                    <div class="item-title">AI Image Generator</div>
+                    <div class="item-subtitle">Python, PyTorch, React</div>
+                </div>
+            </div>
+            <div class="item-description">
+                <ul>
+                    <li>Built a deep learning application generating artistic images from text.</li>
+                    <li>Implemented Stable Diffusion model with a custom fine-tuned layer.</li>
+                    <li>Designed a responsive React frontend for user interaction.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-item tilt-card">
+            <div class="item-header">
+                <div>
+                    <div class="item-title">Crypto Dashboard</div>
+                    <div class="item-subtitle">React, Node.js, WebSockets</div>
+                </div>
+            </div>
+            <div class="item-description">
+                <ul>
+                    <li>Created a real-time cryptocurrency tracking dashboard.</li>
+                    <li>Integrated WebSocket API for live price updates.</li>
+                    <li>Visualized data using Chart.js with interactive features.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="resume-section">
+        <h2 class="section-title"><i class="fas fa-code"></i> Technical Skills</h2>
+
+        <div class="skills-grid-resume">
+            <div class="skill-group">
+                <h4>Languages</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h4>Frameworks</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Flask</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Bootstrap</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h4>Tools</h4>
+                <div class="skill-tags">
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">VS Code</span>
+                    <span class="skill-tag">Postman</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="download-btn-container">
+        <a href="#" class="download-btn" onclick="window.print()">
+            <i class="fas fa-download"></i> Download Resume
+        </a>
     </div>
-
-    <footer>
-        <p>Designed & Built by Nikhil Vishwakarma</p>
-    </footer>
-
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-
-</html>
+</div>
+{% endblock %}

@@ -1,0 +1,263 @@
+/* Tech Stack Marquee */
+.tech-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    background: rgba(24, 28, 31, 0.5);
+    backdrop-filter: blur(5px);
+    margin-bottom: 3rem;
+    border-top: 1px solid rgba(51, 255, 51, 0.1);
+    border-bottom: 1px solid rgba(51, 255, 51, 0.1);
+}
+
+.tech-marquee {
+    display: flex;
+    width: fit-content;
+}
+
+.tech-track {
+    display: flex;
+    animation: scroll 30s linear infinite;
+    gap: 3rem;
+    padding-left: 3rem;
+    /* Initial offset */
+}
+
+.tech-icon {
+    font-size: 1.5rem;
+    color: #33ff33;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    font-family: 'Share Tech Mono', monospace;
+    text-shadow: 0 0 5px rgba(51, 255, 51, 0.5);
+}
+
+.tech-icon i {
+    font-size: 1.8rem;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Enhanced Glassmorphism & Neon Glow */
+.project-card,
+.skills-category {
+    background: rgba(24, 28, 31, 0.7) !important;
+    /* More transparent */
+    backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(51, 255, 51, 0.3) !important;
+    box-shadow: 0 0 15px rgba(51, 255, 51, 0.05) !important;
+}
+
+.project-card:hover,
+.skills-category:hover {
+    background: rgba(24, 28, 31, 0.9) !important;
+    border-color: #33ff33 !important;
+    box-shadow: 0 0 30px rgba(51, 255, 51, 0.2), inset 0 0 20px rgba(51, 255, 51, 0.05) !important;
+    transform: translateY(-10px) scale(1.02);
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(51, 255, 51, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.project-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* Typography Enhancements */
+h1,
+h2,
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 3px !important;
+}
+
+.highlight-text {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Hero Split Layout */
+.hero-split-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 80vh;
+}
+
+.hero-left {
+    flex: 1;
+    text-align: left;
+    z-index: 10;
+}
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.glitch-name {
+    font-size: 5rem;
+    color: #33ff33;
+    text-shadow: 0 0 10px rgba(51, 255, 51, 0.5);
+    position: relative;
+}
+
+.hello-text {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.wave {
+    display: inline-block;
+    animation: wave 2s infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(14deg);
+    }
+
+    20% {
+        transform: rotate(-8deg);
+    }
+
+    30% {
+        transform: rotate(14deg);
+    }
+
+    40% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    60% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* 3D Cube Placeholder */
+.cube-container {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: rotateCube 10s infinite linear, pulseCube 3s ease-in-out infinite;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 2px solid #33ff33;
+    background: rgba(51, 255, 51, 0.1);
+    box-shadow: 0 0 20px rgba(51, 255, 51, 0.2);
+    backface-visibility: visible;
+}
+
+.front {
+    transform: rotateY(0deg) translateZ(100px);
+}
+
+.back {
+    transform: rotateY(180deg) translateZ(100px);
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(100px);
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(100px);
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(100px);
+}
+
+@keyframes rotateCube {
+    from {
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    to {
+        transform: rotateX(360deg) rotateY(360deg);
+    }
+}
+
+@keyframes pulseCube {
+
+    0%,
+    100% {
+        transform: rotateX(0deg) rotateY(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotateX(180deg) rotateY(180deg) scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-split-layout {
+        flex-direction: column-reverse;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-right {
+        margin-bottom: 3rem;
+    }
+
+    .glitch-name {
+        font-size: 3rem;
+    }
+}

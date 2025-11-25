@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}My Portfolio{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css', v='pro') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/polish.css', v='pro') }}" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script src="{{ url_for('static', filename='js/animations.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/animations.js', v='pro') }}" defer></script>
+    {% block styles %}{% endblock %}
 </head>
+
 <body>
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
+
     <div class="sidebar">
         <div class="sidebar-header">
             <h1 class="sidebar-title">Nikhil Vishwakarma</h1>
@@ -32,11 +40,16 @@
             <a href="{{ url_for('contact') }}" class="nav-link" title="Contact">
                 <i class="fas fa-envelope"></i> Contact
             </a>
+            <a href="{{ url_for('resume') }}" class="nav-link" title="Resume">
+                <i class="fas fa-file-alt"></i> Resume
+            </a>
         </nav>
     </div>
     <main class="main-content">
         {% block content %}
         {% endblock %}
     </main>
+    {% block scripts %}{% endblock %}
 </body>
+
 </html>
