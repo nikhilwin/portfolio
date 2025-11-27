@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request
 import json
 import os
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static')
+app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Store tasks in a simple JSON file
 TASKS_FILE = 'tasks.json'
@@ -45,13 +45,17 @@ def contact():
 def resume():
     return render_template('resume.html')
 
-@app.route('/project/weather')
+@app.route('/projects/weather')
 def weather_project():
     return render_template('weather.html')
 
-@app.route('/project/task-manager')
+@app.route('/projects/task-manager')
 def task_manager_project():
     return render_template('task_manager.html')
+
+@app.route('/projects/heart-prediction')
+def heart_prediction_project():
+    return render_template('heart_prediction.html')
 
 # Weather API endpoint
 @app.route('/api/weather/<city>')
