@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - Nikhil Vishwakarma{% endblock %}
+
+{% block content %}
+<section class="contact-section reveal slide-in-up">
+    <h1>Get In Touch</h1>
+    <p class="section-intro">I'm always open to new opportunities, collaborations, and interesting conversations. Feel free to reach out!</p>
+
+    <div class="contact-content">
+        <div class="contact-info">
+            <div class="contact-card hover-up">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>vish.nikhil01@gmail.com</p>
+                <a href="mailto:vish.nikhil01@gmail.com" class="contact-link">Send Email</a>
+            </div>
+
+            <div class="contact-card hover-up">
+                <i class="fab fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>Nikhil Vishwakarma</p>
+                <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank" class="contact-link">View Profile</a>
+            </div>
+
+            <div class="contact-card hover-up">
+                <i class="fab fa-github"></i>
+                <h3>GitHub</h3>
+                <p>@nikhilwin</p>
+                <a href="https://github.com/nikhilwin" target="_blank" class="contact-link">View Repositories</a>
+            </div>
+
+            <div class="contact-card hover-up">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Location</h3>
+                <p>India</p>
+                <span class="timezone">Available for remote work</span>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required />
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <h2>Follow Me</h2>
+        <div class="social-grid">
+            <a href="https://github.com/nikhilwin" target="_blank" class="social-link hover-up">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank" class="social-link hover-up">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="mailto:vish.nikhil01@gmail.com" class="social-link hover-up">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="#" class="social-link hover-up">
+                <i class="fab fa-twitter"></i>
+                <span>Twitter</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+            <div class="faq-item hover-up">
+                <h3>What services do you offer?</h3>
+                <p>I offer web development services including full-stack development, API development, and consulting for tech projects.</p>
+            </div>
+            <div class="faq-item hover-up">
+                <h3>Are you available for freelance work?</h3>
+                <p>Yes, I'm available for freelance projects and collaborations. Let's discuss your requirements!</p>
+            </div>
+            <div class="faq-item hover-up">
+                <h3>What technologies do you work with?</h3>
+                <p>I primarily work with Python, Flask, JavaScript, HTML5, CSS3, and various databases. I'm always learning new technologies.</p>
+            </div>
+            <div class="faq-item hover-up">
+                <h3>How can I collaborate with you?</h3>
+                <p>You can reach out via email or LinkedIn. I'm always excited to work on interesting projects and learn from others.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

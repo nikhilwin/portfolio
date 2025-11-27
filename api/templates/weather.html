@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #00b4d8, #90e0ef);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            color: #333;
+        }
+
+        .weather-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-box {
+            display: flex;
+            margin-bottom: 2rem;
+        }
+
+        .search-box input {
+            border: none;
+            background: #f0f0f0;
+            padding: 10px 15px;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+            flex: 1;
+        }
+
+        .search-box button {
+            border: none;
+            background: #0077b6;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+        }
+
+        .weather-icon {
+            font-size: 4rem;
+            color: #ffb703;
+            margin-bottom: 1rem;
+        }
+
+        .temp {
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .city {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding: 0 1rem;
+        }
+
+        .col {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .col i {
+            font-size: 1.2rem;
+            color: #0077b6;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="/" class="back-btn">← Back to Portfolio</a>
+
+    <div class="weather-card">
+        <div class="search-box">
+            <input type="text" placeholder="Enter city name" value="New York">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="weather">
+            <i class="fas fa-sun weather-icon"></i>
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">New York</h2>
+            <div class="details">
+                <div class="col">
+                    <i class="fas fa-water"></i>
+                    <div>
+                        <p style="margin:0; font-weight:600">50%</p>
+                        <p style="margin:0; font-size:0.8rem">Humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <i class="fas fa-wind"></i>
+                    <div>
+                        <p style="margin:0; font-weight:600">15 km/h</p>
+                        <p style="margin:0; font-size:0.8rem">Wind Speed</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Weather app with API integration
+        const btn = document.querySelector('button');
+        const input = document.querySelector('input');
+        const city = document.querySelector('.city');
+        const temp = document.querySelector('.temp');
+        const icon = document.querySelector('.weather-icon');
+        const humidityEl = document.querySelector('.details .col:first-child p:first-child');
+        const windEl = document.querySelector('.details .col:last-child p:first-child');
+
+        function iconMap(iconName) {
+            const icons = {
+                'sun': 'fa-sun',
+                'cloud': 'fa-cloud',
+                'cloud-rain': 'fa-cloud-rain',
+                'bolt': 'fa-bolt'
+            };
+            return icons[iconName] || 'fa-cloud';
+        }
+
+        function colorMap(iconName) {
+            const colors = {
+                'sun': '#ffb703',
+                'cloud': '#ccc',
+                'cloud-rain': '#48cae4',
+                'bolt': '#ffd60a'
+            };
+            return colors[iconName] || '#ccc';
+        }
+
+        async function fetchWeather(cityName) {
+            try {
+                const response = await fetch(`/api/weather/${cityName}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const weather = data.data;
+                    city.textContent = data.city;
+                    temp.textContent = weather.temp + "°C";
+                    humidityEl.textContent = weather.humidity + "%";
+                    windEl.textContent = weather.wind + " km/h";
+                    
+                    const iconClass = iconMap(weather.icon);
+                    icon.className = `fas ${iconClass} weather-icon`;
+                    icon.style.color = colorMap(weather.icon);
+                }
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+                alert('Could not fetch weather data');
+            }
+        }
+
+        btn.addEventListener('click', () => {
+            const val = input.value.trim();
+            if (val) {
+                fetchWeather(val);
+            }
+        });
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                btn.click();
+            }
+        });
+
+        // Load initial weather on page load
+        window.addEventListener('load', () => {
+            fetchWeather('New York');
+        });
+    </script>
+</body>
+
+</html>

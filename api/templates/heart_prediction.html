@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Heart Disease Prediction - Demo{% endblock %}
+
+{% block content %}
+<section class="project-demo">
+    <h1>Heart Disease Risk Prediction</h1>
+    <p>Enter some sample values to get a quick (mock) prediction. This demo returns a probabilistic risk score for demonstration only.</p>
+
+    <form id="heart-form">
+        <label>Age: <input type="number" name="age" value="45" required></label>
+        <label>Cholesterol: <input type="number" name="chol" value="200" required></label>
+        <label>Resting BP: <input type="number" name="trestbps" value="120" required></label>
+        <label>Max Heart Rate: <input type="number" name="thalach" value="150" required></label>
+        <button type="submit" class="btn btn-primary">Predict</button>
+    </form>
+
+    <div id="result" style="margin-top:1rem;"></div>
+
+    <a href="{{ url_for('projects') }}" class="btn" style="margin-top:1rem; display:inline-block;">Back to Projects</a>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('heart-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = Object.fromEntries(new FormData(form).entries());
+
+    const resp = await fetch('/api/heart_predict', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(data)
+    });
+    const json = await resp.json();
+    document.getElementById('result').innerHTML = `<strong>Risk:</strong> ${json.risk}% — <em>${json.prediction}</em>`;
+});
+</script>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<title>Server Error (500)</title>
+	<style>
+		body{font-family:system-ui,Segoe UI,Roboto,Arial;background:#f7f7fb;color:#222;padding:40px}
+		.container{max-width:760px;margin:40px auto;background:#fff;border-radius:8px;padding:28px;box-shadow:0 6px 24px rgba(20,20,50,.08)}
+		h1{margin:0 0 12px;font-size:28px;color:#111}
+		p{margin:10px 0;color:#444}
+		code{display:block;background:#f1f3f5;padding:10px;border-radius:6px;margin:10px 0;font-family:monospace}
+		.small{font-size:13px;color:#666}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h1>Internal Server Error (500)</h1>
+	<p>Sorry — the server encountered an unexpected error while rendering this page.</p>
+
+	<p class="small"><strong>Quick debugging checklist:</strong></p>
+	<ul class="small">
+		<li>Run the app locally with debugging enabled to see the full traceback (set FLASK_ENV=development and start Flask).</li>
+		<li>Check Vercel / deployment logs for the traceback (Vercel Dashboard → Deployments → View Logs or use <code>vercel logs</code>).</li>
+		<li>Look for missing templates, missing endpoints, import errors, or database exceptions in the traceback and fix them in the corresponding view.</li>
+	</ul>
+
+	<p class="small">If you need the traceback locally, run these commands in your project root:</p>
+	<code>
+		# Windows (cmd)
+		set FLASK_APP=app.py<br/>
+		set FLASK_ENV=development<br/>
+		flask run
+	</code>
+
+	<p class="small">After fixing, commit and push to GitHub and Vercel will auto-deploy:</p>
+	<code>
+		git add -A<br/>
+		git commit -m "Fix server error"<br/>
+		git push origin main
+	</code>
+
+	<p class="small">If you'd like, paste the exact traceback (from local run or Vercel logs) and I will point to the offending line and suggest a fix.</p>
+</div>
+</body>
+</html>
