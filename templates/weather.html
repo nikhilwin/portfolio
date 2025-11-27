@@ -134,30 +134,73 @@
     </div>
 
     <script>
-        // Simple simulation script
+        // Weather app with API integration
         const btn = document.querySelector('button');
         const input = document.querySelector('input');
         const city = document.querySelector('.city');
         const temp = document.querySelector('.temp');
         const icon = document.querySelector('.weather-icon');
+        const humidityEl = document.querySelector('.details .col:first-child p:first-child');
+        const windEl = document.querySelector('.details .col:last-child p:first-child');
+
+        function iconMap(iconName) {
+            const icons = {
+                'sun': 'fa-sun',
+                'cloud': 'fa-cloud',
+                'cloud-rain': 'fa-cloud-rain',
+                'bolt': 'fa-bolt'
+            };
+            return icons[iconName] || 'fa-cloud';
+        }
+
+        function colorMap(iconName) {
+            const colors = {
+                'sun': '#ffb703',
+                'cloud': '#ccc',
+                'cloud-rain': '#48cae4',
+                'bolt': '#ffd60a'
+            };
+            return colors[iconName] || '#ccc';
+        }
+
+        async function fetchWeather(cityName) {
+            try {
+                const response = await fetch(`/api/weather/${cityName}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    const weather = data.data;
+                    city.textContent = data.city;
+                    temp.textContent = weather.temp + "°C";
+                    humidityEl.textContent = weather.humidity + "%";
+                    windEl.textContent = weather.wind + " km/h";
+                    
+                    const iconClass = iconMap(weather.icon);
+                    icon.className = `fas ${iconClass} weather-icon`;
+                    icon.style.color = colorMap(weather.icon);
+                }
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+                alert('Could not fetch weather data');
+            }
+        }
 
         btn.addEventListener('click', () => {
-            const val = input.value;
+            const val = input.value.trim();
             if (val) {
-                city.textContent = val;
-                // Random temp between 15 and 30
-                const t = Math.floor(Math.random() * (30 - 15 + 1) + 15);
-                temp.textContent = t + "°C";
-
-                // Random icon
-                const icons = ['fa-sun', 'fa-cloud', 'fa-cloud-rain', 'fa-bolt'];
-                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
-                icon.className = `fas ${randomIcon} weather-icon`;
-
-                if (randomIcon === 'fa-sun') icon.style.color = '#ffb703';
-                else if (randomIcon === 'fa-cloud') icon.style.color = '#ccc';
-                else icon.style.color = '#48cae4';
+                fetchWeather(val);
             }
+        });
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                btn.click();
+            }
+        });
+
+        // Load initial weather on page load
+        window.addEventListener('load', () => {
+            fetchWeather('New York');
         });
     </script>
 </body>

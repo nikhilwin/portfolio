@@ -125,29 +125,113 @@
         const input = document.getElementById("taskInput");
         const list = document.getElementById("taskList");
 
-        function addTask() {
-            if (input.value === '') {
+        // Load tasks from API on page load
+        async function loadTasks() {
+            try {
+                const response = await fetch('/api/tasks');
+                const tasks = await response.json();
+                list.innerHTML = '';
+                
+                if (tasks.length === 0) {
+                    list.innerHTML = '<li style="color: #999; padding: 20px; text-align: center;">No tasks yet. Add one above!</li>';
+                } else {
+                    tasks.forEach(task => {
+                        addTaskToList(task);
+                    });
+                }
+            } catch (error) {
+                console.error('Error loading tasks:', error);
+            }
+        }
+
+        function addTaskToList(task) {
+            let li = document.createElement("li");
+            if (task.completed) {
+                li.classList.add('checked');
+            }
+            li.innerHTML = `<span>${task.title}</span> <i class="fas fa-trash delete-btn"></i>`;
+            li.dataset.taskId = task.id;
+            list.appendChild(li);
+            bindEvents(li);
+        }
+
+        async function addTask() {
+            const taskTitle = input.value.trim();
+            if (taskTitle === '') {
                 alert("You must write something!");
-            } else {
-                let li = document.createElement("li");
-                li.innerHTML = `<span>${input.value}</span> <i class="fas fa-trash delete-btn"></i>`;
-                list.appendChild(li);
-                input.value = "";
-                bindEvents(li);
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/tasks', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ title: taskTitle })
+                });
+
+                if (response.ok) {
+                    const newTask = await response.json();
+                    addTaskToList(newTask);
+                    input.value = "";
+                } else {
+                    alert("Error adding task");
+                }
+            } catch (error) {
+                console.error('Error adding task:', error);
+                alert("Error adding task");
+            }
+        }
+
+        async function deleteTask(taskId) {
+            try {
+                const response = await fetch(`/api/tasks/${taskId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    document.querySelector(`li[data-task-id="${taskId}"]`).remove();
+                }
+            } catch (error) {
+                console.error('Error deleting task:', error);
+            }
+        }
+
+        async function toggleTaskComplete(taskId, isCompleted) {
+            try {
+                const response = await fetch(`/api/tasks/${taskId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ completed: isCompleted })
+                });
+
+                if (!response.ok) {
+                    console.error('Error updating task');
+                }
+            } catch (error) {
+                console.error('Error updating task:', error);
             }
         }
 
         function bindEvents(li) {
+            const taskId = parseInt(li.dataset.taskId);
+            
             li.addEventListener('click', function (e) {
-                if (e.target.tagName === 'SPAN' || e.target === li) {
+                if (e.target.tagName === 'SPAN' || (e.target === li && !e.target.classList.contains('delete-btn'))) {
                     li.classList.toggle('checked');
+                    const isCompleted = li.classList.contains('checked');
+                    toggleTaskComplete(taskId, isCompleted);
                 } else if (e.target.classList.contains('delete-btn')) {
-                    li.remove();
+                    deleteTask(taskId);
                 }
             });
         }
 
-        document.querySelectorAll('li').forEach(bindEvents);
+        // Load tasks on page load
+        window.addEventListener('load', loadTasks);
     </script>
 </body>
 

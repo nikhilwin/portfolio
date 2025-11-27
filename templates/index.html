@@ -1,3 +1,26 @@
+<!--
+DEPLOY NOTES (quick copy-paste)
+
+# 1) Basic save & push (assumes branch 'main' and remote 'origin' already set)
+git add -A
+git commit -m "Save changes"
+git pull origin main --rebase
+git push origin main
+
+# 2) If you don't have a remote yet (replace placeholders)
+git branch -M main
+git remote add origin https://github.com/<your-username>/<your-repo>.git
+git push -u origin main
+
+# 3) Force an immediate Vercel deploy from your machine
+npm i -g vercel
+vercel login
+vercel --prod
+
+Notes:
+- Vercel auto-deploys when you push to the connected branch.
+- Check Vercel dashboard -> Deployments for build logs and status.
+-->
 {% extends "base.html" %}
 
 {% block title %}Home - Nikhil Vishwakarma{% endblock %}
@@ -5,30 +28,42 @@
 {% block content %}
 
 <div id="intro-overlay">
-    <p class="highlight-text">Hello World! I'm Nikhil Vishwakarma 👋</p>
-    <p>A passionate BCA student with a love for coding and technology. I specialize in full-stack development
-        and have a keen interest in AI/ML. Currently exploring the fascinating world of artificial intelligence
-        and machine learning.</p>
-    <p>My journey in tech started with Python programming, and since then, I've been constantly learning and
-        building projects that solve real-world problems.</p>
-    <div class="code-stats">
-        <div class="stat-item">
-            <i class="fas fa-code"></i>
-            <span>10+ Projects</span>
+    <div class="intro-content">
+        <p class="highlight-text">Hello World! 👋</p>
+        <h1 class="hero-name">I'm <span class="highlight">Nikhil Vishwakarma</span></h1>
+        <p class="hero-subtitle">Full-Stack Developer | AI/ML Enthusiast | Problem Solver</p>
+        <div class="intro-description">
+            <p>A passionate BCA student crafting digital solutions through code. I specialize in full-stack development, exploring AI/ML, and building projects that make a real impact.</p>
+            <p>My journey started with Python, and I've been constantly learning, innovating, and pushing the boundaries of what's possible with technology.</p>
         </div>
-        <div class="stat-item">
-            <i class="fas fa-star"></i>
-            <span>Problem Solver</span>
+        <div class="code-stats">
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Projects Built</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5+</div>
+                <div class="stat-label">Tech Stack</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Dedication</div>
+            </div>
         </div>
-        <div class="stat-item">
-            <i class="fas fa-laptop-code"></i>
-            <span>Full Stack Dev</span>
+        <div class="cta-buttons">
+            <a href="{{ url_for('projects') }}" class="btn btn-primary">
+                <i class="fas fa-folder-open"></i> View My Work
+            </a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary">
+                <i class="fas fa-envelope"></i> Get In Touch
+            </a>
         </div>
     </div>
 </div>
 
 <section id="skills" class="reveal">
     <h2>Skills & Expertise</h2>
+    <p class="section-subtitle">Technologies I work with</p>
 
     <!-- Tech Stack Marquee -->
     <div class="tech-marquee-container">
@@ -100,67 +135,78 @@
 <section id="projects" class="reveal">
     <h2>Featured Projects</h2>
     <div class="project-list">
+    <p class="section-subtitle">Recent projects showcasing my skills</p>
         <div class="project-card hover-up tilt-card">
             <div class="card-glow"></div>
-            <h3><i class="fas fa-robot"></i> AI Image Generator</h3>
-            <p>A deep learning application that generates artistic images from text descriptions using Stable Diffusion.
-                Features a React frontend and Python backend.</p>
+            <div class="project-icon"><i class="fas fa-cloud"></i></div>
+            <h3>Weather App</h3>
+            <p>Real-time weather dashboard with city search, live weather data, and dynamic weather icons. Built with vanilla JavaScript and a Python Flask backend.</p>
             <div class="project-tech">
                 <span class="tech-tag">Python</span>
-                <span class="tech-tag">PyTorch</span>
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">API</span>
             </div>
             <div class="project-links">
-                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a href="{{ url_for('weather_project') }}" class="project-link"><i class="fas fa-play-circle"></i> Try Demo</a>
             </div>
         </div>
         <div class="project-card hover-up tilt-card">
             <div class="card-glow"></div>
-            <h3><i class="fas fa-chart-line"></i> Crypto Dashboard</h3>
-            <p>Real-time cryptocurrency tracking dashboard with live price updates via WebSockets, interactive charts,
-                and portfolio management features.</p>
-            <div class="project-tech">
-                <span class="tech-tag">React</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">Socket.io</span>
-                <span class="tech-tag">Chart.js</span>
-            </div>
-            <div class="project-links">
-                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
-            </div>
-        </div>
-        <div class="project-card hover-up tilt-card">
-            <div class="card-glow"></div>
-            <h3><i class="fas fa-shopping-cart"></i> E-Commerce Platform</h3>
-            <p>Full-stack e-commerce solution with user authentication, product search, shopping cart, and Stripe
-                payment integration.</p>
+            <div class="project-icon"><i class="fas fa-tasks"></i></div>
+            <h3>Task Manager</h3>
+            <p>Full-featured task management system with persistent storage. Add, complete, and delete tasks with a clean interface. Data persists across sessions.</p>
             <div class="project-tech">
                 <span class="tech-tag">Flask</span>
-                <span class="tech-tag">SQLAlchemy</span>
-                <span class="tech-tag">Stripe API</span>
-                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">JSON</span>
+                <span class="tech-tag">REST API</span>
             </div>
             <div class="project-links">
-                <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
-                <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                <a href="{{ url_for('task_manager_project') }}" class="project-link"><i class="fas fa-play-circle"></i> Try Demo</a>
+            </div>
+        </div>
+        <div class="project-card hover-up tilt-card">
+            <div class="card-glow"></div>
+            <div class="project-icon"><i class="fas fa-briefcase"></i></div>
+            <h3>Portfolio Website</h3>
+            <p>Modern, responsive portfolio built with Flask and vanilla JavaScript. Features smooth animations, dark mode support, and a comprehensive project showcase.</p>
+            <div class="project-tech">
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">HTML5</span>
+                <span class="tech-tag">CSS3</span>
+                <span class="tech-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+                <a href="{{ url_for('projects') }}" class="project-link"><i class="fas fa-arrow-right"></i> View All</a>
             </div>
         </div>
     </div>
 </section>
 
-<section id="contact" class="reveal">
-    <h2>Contact Me</h2>
-    <div class="project-card">
-        <p>I'm always open to new opportunities and collaborations.</p>
-        <div class="social-links">
-            <a href="https://github.com/nikhilwin" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-            <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank"><i
-                    class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="mailto:vish.nikhil01@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+    <h2>Let's Work Together</h2>
+    <p class="section-subtitle">I'm always open to new opportunities and collaborations</p>
+    <div class="contact-quick">
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <h3>Email</h3>
+            <a href="mailto:vish.nikhil01@gmail.com">vish.nikhil01@gmail.com</a>
         </div>
+        <div class="contact-item">
+            <i class="fab fa-github"></i>
+            <h3>GitHub</h3>
+            <a href="https://github.com/nikhilwin" target="_blank">github.com/nikhilwin</a>
+        </div>
+        <div class="contact-item">
+            <i class="fab fa-linkedin"></i>
+            <h3>LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank">Connect with me</a>
+        </div>
+    </div>
+    <div class="contact-cta">
+        <a href="{{ url_for('contact') }}" class="btn btn-primary btn-large">
+            <i class="fas fa-envelope"></i> Send me a Message
+        </a>
     </div>
 </section>
 {% endblock %}

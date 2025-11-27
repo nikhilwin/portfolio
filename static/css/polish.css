@@ -17,7 +17,8 @@
 
 .tech-track {
     display: flex;
-    animation: scroll 30s linear infinite;
+    /* removed horizontal scrolling to avoid left-right motion */
+    animation: none;
     gap: 3rem;
     padding-left: 3rem;
     /* Initial offset */
@@ -38,15 +39,7 @@
     font-size: 1.8rem;
 }
 
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
+/* horizontal scroll removed intentionally to prevent side-to-side motion */
 
 /* Enhanced Glassmorphism & Neon Glow */
 .project-card,
@@ -187,7 +180,8 @@ h3 {
     height: 100%;
     position: relative;
     transform-style: preserve-3d;
-    animation: rotateCube 10s infinite linear, pulseCube 3s ease-in-out infinite;
+    /* only a subtle pulse to avoid 3D rotation */
+    animation: pulseCube 3s ease-in-out infinite;
 }
 
 .face {
@@ -224,25 +218,13 @@ h3 {
     transform: rotateX(-90deg) translateZ(100px);
 }
 
-@keyframes rotateCube {
-    from {
-        transform: rotateX(0deg) rotateY(0deg);
-    }
-
-    to {
-        transform: rotateX(360deg) rotateY(360deg);
-    }
-}
-
 @keyframes pulseCube {
-
-    0%,
-    100% {
-        transform: rotateX(0deg) rotateY(0deg) scale(1);
+    0%, 100% {
+        transform: scale(1);
     }
 
     50% {
-        transform: rotateX(180deg) rotateY(180deg) scale(1.1);
+        transform: scale(1.05);
     }
 }
 

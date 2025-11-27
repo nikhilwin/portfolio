@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request
 import json
 import os
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
 
 # Store tasks in a simple JSON file
 TASKS_FILE = 'tasks.json'
@@ -52,31 +52,6 @@ def weather_project():
 @app.route('/project/task-manager')
 def task_manager_project():
     return render_template('task_manager.html')
-
-
-@app.route('/project/heart-prediction')
-def heart_prediction_project():
-    return render_template('heart_prediction.html')
-
-
-# Heart prediction mock API
-@app.route('/api/heart_predict', methods=['POST'])
-def heart_predict():
-    data = request.get_json() or {}
-    # Very simple mock scoring: higher age/chol/trestbps increases risk
-    try:
-        age = float(data.get('age', 50))
-        chol = float(data.get('chol', 200))
-        trestbps = float(data.get('trestbps', 120))
-        thalach = float(data.get('thalach', 140))
-    except Exception:
-        return jsonify({'error': 'invalid input'}), 400
-
-    score = (age * 0.2) + (chol * 0.1) + (trestbps * 0.15) - (thalach * 0.1)
-    # Normalize into 0-100
-    risk = max(0, min(100, int(score / 3)))
-    prediction = 'High' if risk > 60 else 'Medium' if risk > 30 else 'Low'
-    return jsonify({'risk': risk, 'prediction': prediction})
 
 # Weather API endpoint
 @app.route('/api/weather/<city>')

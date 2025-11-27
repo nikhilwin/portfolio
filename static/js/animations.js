@@ -334,30 +334,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Enhanced hover effects and new animations
 document.addEventListener('DOMContentLoaded', () => {
-    // Add magnetic effect to buttons
-    document.querySelectorAll('.btn, .social-button').forEach(btn => {
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
+    // Removed magnetic effect to buttons - no more left-to-right movement on hover
 
-            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-            btn.style.transform = 'translate(0, 0)';
-        });
-    });
-
-    // Add enhanced animations to elements
-    document.querySelectorAll('.project-card').forEach(card => {
-        card.addEventListener('mouseenter', () => {
-            card.classList.add('heartbeat');
-        });
-        card.addEventListener('mouseleave', () => {
-            card.classList.remove('heartbeat');
-        });
-    });
+    // Project card hover effect is now handled by CSS only for smooth zoom effect
 
     document.querySelectorAll('.skills-category').forEach(category => {
         category.addEventListener('mouseenter', () => {
@@ -500,26 +479,15 @@ document.addEventListener('DOMContentLoaded', () => {
         counterObserver.observe(stat);
     });
 
-    // 3D tilt effect
-    document.querySelectorAll('.tilt-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-        });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
-        });
-    });
+    // Tilt effect removed: replaced by CSS scale-only hover for smoother UX
+    // document.querySelectorAll('.tilt-card').forEach(card => {
+    //     card.addEventListener('mousemove', (e) => {
+    //         // intentionally disabled - horizontal movement caused buffering/jerky motion
+    //     });
+    //     card.addEventListener('mouseleave', () => {
+    //         // reset transform
+    //     });
+    // });
 
     // Morphing icons
     document.querySelectorAll('.morph-icon').forEach(icon => {
