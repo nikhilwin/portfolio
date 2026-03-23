@@ -1,223 +1,821 @@
-<!--
-DEPLOY NOTES (quick copy-paste)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nikhil Vishwakarma — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#050A14;--surface:#0C1525;--card:#0F1D35;--accent:#00E5FF;--accent2:#FF6B6B;--accent3:#A78BFA;--text:#E8F0FE;--muted:#6B7FA3;--border:rgba(0,229,255,0.12);--glow:0 0 40px rgba(0,229,255,0.15);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(0,229,255,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .3s,height .3s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 5%;background:linear-gradient(to bottom,rgba(5,10,20,.98),transparent);backdrop-filter:blur(6px);}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.25rem;color:var(--accent);}
+.nav-logo span{color:var(--text);}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.78rem;letter-spacing:.1em;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-3px;width:0;height:1px;background:var(--accent);transition:width .3s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-links a:hover::after{width:100%;}
+.hero{min-height:100vh;display:flex;align-items:center;padding:0 8%;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 60% at 70% 40%,rgba(0,229,255,.07) 0%,transparent 70%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(167,139,250,.06) 0%,transparent 60%);}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(0,229,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.04) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 80%);}
+.hero-content{position:relative;z-index:1;max-width:700px;}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.5rem;animation:fadeUp .8s ease both;}
+.hero-eyebrow::before{content:'// ';}
+.hero-name{font-family:'Syne',sans-serif;font-size:clamp(3rem,8vw,6rem);font-weight:800;line-height:.95;letter-spacing:-.02em;margin-bottom:1rem;animation:fadeUp .8s ease .1s both;}
+.hero-name .line1{display:block;color:var(--text);}
+.hero-name .line2{display:block;color:var(--accent);}
+.hero-title{font-size:1.1rem;color:var(--muted);margin-bottom:2rem;animation:fadeUp .8s ease .2s both;}
+.hero-title strong{color:var(--accent3);font-weight:500;}
+.hero-desc{font-size:1rem;color:var(--muted);line-height:1.8;max-width:480px;margin-bottom:2.5rem;animation:fadeUp .8s ease .3s both;}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeUp .8s ease .4s both;}
+.btn-p{padding:.8rem 2rem;background:var(--accent);color:var(--bg);font-family:'DM Mono',monospace;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:background .2s;border:none;cursor:pointer;}
+.btn-p:hover{background:#fff;}
+.btn-o{padding:.8rem 2rem;border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:border-color .2s,color .2s;}
+.btn-o:hover{border-color:var(--accent);color:var(--accent);}
+.hero-scroll{position:absolute;bottom:2.5rem;left:8%;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;display:flex;align-items:center;gap:.8rem;animation:fadeUp .8s ease .6s both;}
+.scroll-line{width:40px;height:1px;background:var(--muted);animation:sp 2s ease infinite;}
+section{padding:6rem 8%;position:relative;}
+.stag{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.8rem;}
+.stag::before{content:'[ ';}.stag::after{content:' ]';}
+.stitle{font-family:'Syne',sans-serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;margin-bottom:1rem;line-height:1.1;}
+.sline{width:60px;height:2px;background:linear-gradient(to right,var(--accent),transparent);margin-bottom:3rem;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.about-av{width:260px;height:300px;background:var(--card);border:1px solid var(--border);clip-path:polygon(0 0,calc(100% - 20px) 0,100% 20px,100% 100%,20px 100%,0 calc(100% - 20px));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:var(--glow);margin:0 auto;}
+.about-av::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,.1),rgba(167,139,250,.08));}
+.av-init{font-family:'Syne',sans-serif;font-size:5rem;font-weight:800;color:var(--accent);opacity:.6;z-index:1;}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1.2rem;}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem;}
+.sc{background:var(--card);border:1px solid var(--border);padding:1.2rem 1rem;text-align:center;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+.sn{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);display:block;}
+.sl{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;display:block;}
+.skills-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+.sgt{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--accent3);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--border);}
+.si{margin-bottom:1.2rem;}
+.sh{display:flex;justify-content:space-between;margin-bottom:.5rem;}
+.sn2{font-size:.9rem;color:var(--text);}
+.sp{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent);}
+.sb{height:3px;background:rgba(255,255,255,.06);overflow:hidden;}
+.sf{height:100%;background:linear-gradient(to right,var(--accent),var(--accent3));transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.16,1,.3,1);}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+.pc{background:var(--card);border:1px solid var(--border);padding:2rem;position:relative;overflow:hidden;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));transition:border-color .3s,transform .3s,box-shadow .3s;cursor:pointer;}
+.pc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,229,255,.04),transparent);opacity:0;transition:opacity .3s;}
+.pc:hover{border-color:rgba(0,229,255,.5);transform:translateY(-5px);box-shadow:var(--glow);}
+.pc:hover::before{opacity:1;}
+.ob{position:absolute;top:1.2rem;right:1.2rem;background:var(--accent);color:var(--bg);font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;padding:.3rem .7rem;text-transform:uppercase;display:flex;align-items:center;gap:.3rem;}
+.pnum{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.15em;margin-bottom:1rem;}
+.ptitle{font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:.8rem;}
+.pdesc{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem;}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.tg{font-family:'DM Mono',monospace;font-size:.68rem;padding:.25rem .6rem;border:1px solid var(--border);color:var(--accent);background:rgba(0,229,255,.04);}
+.emoji{font-size:1.4rem;margin-bottom:.8rem;display:block;}
+.edu-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.tl{position:relative;padding-left:2rem;}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent3),transparent);}
+.tli{position:relative;margin-bottom:3rem;padding-left:1.5rem;}
+.tld{position:absolute;left:-2.6rem;top:.3rem;width:12px;height:12px;background:var(--accent);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);}
+.tlp{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.1em;margin-bottom:.4rem;}
+.tlt{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:.2rem;}
+.tls{color:var(--accent3);font-size:.88rem;margin-bottom:.6rem;}
+.tldesc{color:var(--muted);font-size:.9rem;line-height:1.7;}
+.cbse{display:inline-block;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.3);color:var(--accent);font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.1em;padding:.2rem .5rem;text-transform:uppercase;margin-left:.5rem;vertical-align:middle;}
+.cg{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;}
+.cit{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:1rem;line-height:1.2;}
+.cit span{color:var(--accent);}
+.cid{color:var(--muted);line-height:1.8;margin-bottom:2rem;}
+.cls{display:flex;flex-direction:column;gap:.8rem;}
+.cl{display:flex;align-items:center;gap:.8rem;font-family:'DM Mono',monospace;font-size:.82rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+.cl:hover{color:var(--accent);}
+.cli{width:36px;height:36px;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,6px 100%,0 calc(100% - 6px));flex-shrink:0;}
+.cf{display:flex;flex-direction:column;gap:1rem;}
+.fg{display:flex;flex-direction:column;gap:.4rem;}
+.fg label{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+.fg input,.fg textarea{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.9rem;padding:.8rem 1rem;outline:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);transition:border-color .2s;}
+.fg input:focus,.fg textarea:focus{border-color:var(--accent);}
+.fg textarea{resize:vertical;min-height:120px;}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted);opacity:.5;}
+footer{padding:2rem 8%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+@keyframes sp{0%,100%{opacity:.3;width:30px;}50%{opacity:1;width:50px;}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.rv.vis{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}
 
-# 1) Basic save & push (assumes branch 'main' and remote 'origin' already set)
-git add -A
-git commit -m "Save changes"
-git pull origin main --rebase
-git push origin main
+/* MODAL */
+.mo{position:fixed;inset:0;background:rgba(3,7,18,.93);backdrop-filter:blur(12px);z-index:1000;display:none;align-items:center;justify-content:center;padding:1.5rem;}
+.mo.open{display:flex;}
+.mw{background:var(--surface);border:1px solid var(--border);width:100%;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 0 80px rgba(0,229,255,.12);}
+.mh{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-bottom:1px solid var(--border);flex-shrink:0;}
+.mhtitle{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--accent);display:flex;align-items:center;gap:.6rem;}
+.mdots span{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:3px;}
+.mdots .dd1{background:#ff5f57;}.mdots .dd2{background:#ffbd2e;}.mdots .dd3{background:#27c93f;}
+.mc{background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:.75rem;padding:.3rem .8rem;cursor:pointer;letter-spacing:.1em;transition:color .2s,border-color .2s;}
+.mc:hover{color:var(--accent2);border-color:var(--accent2);}
+.mb{overflow-y:auto;flex:1;}
 
-# 2) If you don't have a remote yet (replace placeholders)
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
+/* CALCULATOR */
+.cw{padding:2rem;display:flex;justify-content:center;}
+.calc{background:#0a1628;border:1px solid var(--border);width:340px;}
+.cdisp{background:#060f1e;padding:1.5rem;text-align:right;border-bottom:1px solid var(--border);}
+.cexpr{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--muted);min-height:1.2rem;margin-bottom:.4rem;}
+.cval{font-family:'DM Mono',monospace;font-size:2.2rem;color:var(--accent);word-break:break-all;}
+.cmode{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent3);margin-top:.3rem;text-align:left;}
+.cbtns{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:2px;}
+.cb{font-family:'DM Mono',monospace;font-size:.78rem;padding:.65rem .2rem;border:none;cursor:pointer;transition:background .15s;}
+.cbn{background:#0f1d35;color:var(--text);}.cbn:hover{background:#1a2f50;}
+.cbo{background:#0d2035;color:var(--accent);}.cbo:hover{background:#163050;}
+.cbf{background:#0a1a2e;color:var(--accent3);font-size:.7rem;}.cbf:hover{background:#142440;}
+.cbe{background:var(--accent);color:var(--bg);font-weight:700;}.cbe:hover{background:#33eeff;}
+.cbc{background:#1a0f0f;color:var(--accent2);}.cbc:hover{background:#2a1515;}
+.cbz{grid-column:span 2;}
+.chist{padding:.8rem 1rem;border-top:1px solid var(--border);max-height:100px;overflow-y:auto;}
+.chist p{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);padding:.2rem 0;border-bottom:1px solid rgba(255,255,255,.03);}
 
-# 3) Force an immediate Vercel deploy from your machine
-npm i -g vercel
-vercel login
-vercel --prod
+/* TASKS */
+.tw{padding:1.5rem;max-width:700px;margin:0 auto;}
+.thead2{display:flex;gap:.8rem;margin-bottom:1.5rem;}
+.ti{flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.9rem;padding:.7rem 1rem;outline:none;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+.ti:focus{border-color:var(--accent);}
+.tsel{background:var(--card);border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:.75rem;padding:.7rem .6rem;outline:none;cursor:pointer;}
+.tadd{padding:.7rem 1.2rem;background:var(--accent);color:var(--bg);font-family:'DM Mono',monospace;font-size:.8rem;border:none;cursor:pointer;font-weight:700;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);white-space:nowrap;}
+.tfilts{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.tfb{background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:.7rem;padding:.35rem .8rem;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;transition:all .2s;}
+.tfb.act{background:var(--accent);color:var(--bg);border-color:var(--accent);}
+.tstats{display:flex;gap:1.5rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.ts{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted);}
+.ts b{color:var(--accent);}
+.tlist{display:flex;flex-direction:column;gap:.6rem;}
+.titem{background:var(--card);border:1px solid var(--border);padding:.9rem 1rem;display:flex;align-items:center;gap:.8rem;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);transition:opacity .3s;}
+.titem.done{opacity:.5;}
+.titem.done .ttext{text-decoration:line-through;color:var(--muted);}
+.tck{width:18px;height:18px;border:1.5px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .2s;}
+.tck.ck{background:var(--accent);border-color:var(--accent);color:var(--bg);font-size:.7rem;}
+.ttext{flex:1;font-size:.9rem;}
+.tpr{font-family:'DM Mono',monospace;font-size:.62rem;padding:.15rem .4rem;text-transform:uppercase;letter-spacing:.08em;}
+.ph{background:rgba(255,107,107,.15);color:#ff6b6b;border:1px solid rgba(255,107,107,.3);}
+.pm{background:rgba(255,200,80,.1);color:#ffc850;border:1px solid rgba(255,200,80,.2);}
+.pl{background:rgba(0,229,255,.08);color:var(--accent);border:1px solid var(--border);}
+.tdel{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;padding:.2rem .4rem;transition:color .2s;}
+.tdel:hover{color:var(--accent2);}
+.tempty{text-align:center;color:var(--muted);font-family:'DM Mono',monospace;font-size:.8rem;padding:3rem;border:1px dashed var(--border);}
 
-Notes:
-- Vercel auto-deploys when you push to the connected branch.
-- Check Vercel dashboard -> Deployments for build logs and status.
--->
-{% extends "base.html" %}
+/* HMS */
+.hms{display:flex;height:calc(90vh - 60px);}
+.hsb{width:180px;background:#060f1e;border-right:1px solid var(--border);padding:1rem 0;flex-shrink:0;}
+.hni{display:flex;align-items:center;gap:.6rem;padding:.7rem 1rem;cursor:pointer;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:all .2s;border-left:2px solid transparent;}
+.hni:hover,.hni.act{color:var(--accent);border-left-color:var(--accent);background:rgba(0,229,255,.04);}
+.hm{flex:1;overflow-y:auto;padding:1.5rem;}
+.hp{display:none;}.hp.act{display:block;}
+.hpt{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:1.5rem;color:var(--accent);}
+.htable{width:100%;border-collapse:collapse;font-size:.82rem;}
+.htable th{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--accent3);letter-spacing:.1em;text-transform:uppercase;padding:.6rem .8rem;border-bottom:1px solid var(--border);text-align:left;}
+.htable td{padding:.65rem .8rem;border-bottom:1px solid rgba(255,255,255,.04);color:var(--text);}
+.htable tr:hover td{background:rgba(0,229,255,.03);}
+.hbdg{font-family:'DM Mono',monospace;font-size:.62rem;padding:.2rem .5rem;text-transform:uppercase;letter-spacing:.05em;}
+.ba{background:rgba(0,255,150,.1);color:#00ff96;border:1px solid rgba(0,255,150,.2);}
+.bp{background:rgba(255,200,80,.1);color:#ffc850;border:1px solid rgba(255,200,80,.2);}
+.bd{background:rgba(150,150,255,.1);color:#9999ff;border:1px solid rgba(150,150,255,.2);}
+.hcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2rem;}
+.hcard{background:var(--card);border:1px solid var(--border);padding:1.2rem;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,0 100%);}
+.hcn{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);display:block;}
+.hcl{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.hform{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:500px;}
+.hff{grid-column:span 2;}
+.hi{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.85rem;padding:.6rem .8rem;outline:none;width:100%;}
+.hi:focus{border-color:var(--accent);}
+.hl{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-bottom:.3rem;}
+.hsub{background:var(--accent);color:var(--bg);border:none;font-family:'DM Mono',monospace;font-size:.78rem;padding:.6rem 1.5rem;cursor:pointer;letter-spacing:.1em;margin-top:.5rem;}
+.hmsg{font-family:'DM Mono',monospace;font-size:.75rem;color:#00ff96;margin-top:.8rem;display:none;}
 
-{% block title %}Home - Nikhil Vishwakarma{% endblock %}
+/* CHAT */
+.chat{display:flex;height:calc(90vh - 60px);}
+.csb{width:200px;background:#060f1e;border-right:1px solid var(--border);display:flex;flex-direction:column;}
+.cbrand{padding:1rem;border-bottom:1px solid var(--border);}
+.cbn2{font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:var(--accent);}
+.cbsub{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em;}
+.crooms{flex:1;overflow-y:auto;padding:.5rem 0;}
+.croom{display:flex;align-items:center;gap:.6rem;padding:.65rem 1rem;cursor:pointer;transition:background .2s;border-left:2px solid transparent;}
+.croom:hover,.croom.actr{background:rgba(0,229,255,.04);border-left-color:var(--accent);}
+.crdot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.crname{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);}
+.croom.actr .crname{color:var(--accent);}
+.don{background:#00ff96;}.daw{background:#ffc850;}.dof{background:var(--muted);}
+.cmain{flex:1;display:flex;flex-direction:column;}
+.ctop{padding:.9rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem;flex-shrink:0;}
+.ctoprn{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;}
+.ctopst{font-family:'DM Mono',monospace;font-size:.65rem;color:#00ff96;}
+.cmsgs{flex:1;overflow-y:auto;padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.8rem;}
+.cmsg{max-width:75%;display:flex;flex-direction:column;gap:.3rem;}
+.cmsg.me{align-self:flex-end;align-items:flex-end;}
+.cmsg.them{align-self:flex-start;align-items:flex-start;}
+.cbub{padding:.65rem 1rem;font-size:.88rem;line-height:1.5;word-break:break-word;}
+.me .cbub{background:var(--accent);color:var(--bg);clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);}
+.them .cbub{background:var(--card);border:1px solid var(--border);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 0);}
+.cmeta{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);}
+.ctyping{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);padding:.4rem 1.2rem;display:none;}
+.ctyping.show{display:block;}
+.cinbar{padding:.8rem 1.2rem;border-top:1px solid var(--border);display:flex;gap:.7rem;flex-shrink:0;}
+.cinput{flex:1;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Outfit',sans-serif;font-size:.88rem;padding:.6rem 1rem;outline:none;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);}
+.cinput:focus{border-color:var(--accent);}
+.csend{background:var(--accent);color:var(--bg);border:none;font-family:'DM Mono',monospace;font-size:.8rem;padding:.6rem 1.2rem;cursor:pointer;font-weight:700;clip-path:polygon(0 0,calc(100% - 6px) 0,100% 6px,100% 100%,0 100%);transition:background .2s;}
+.csend:hover{background:#33eeff;}
+.cusers{width:150px;background:#060f1e;border-left:1px solid var(--border);padding:.8rem 0;}
+.cutt{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;padding:.4rem 1rem;border-bottom:1px solid var(--border);margin-bottom:.4rem;}
+.cuu{display:flex;align-items:center;gap:.5rem;padding:.4rem 1rem;}
+.cuname{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--text);}
+.cuav{width:22px;height:22px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--accent);flex-shrink:0;}
 
-{% block content %}
+@media(max-width:768px){nav{padding:1rem 5%;}.nav-links{display:none;}section{padding:4rem 5%;}.hero{padding:0 5%;}.about-grid,.cg{grid-template-columns:1fr;gap:2rem;}.hero-name{font-size:clamp(2.4rem,10vw,4rem);}.hsb,.csb,.cusers{display:none;}.pg{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="cursor" id="CUR"></div>
+<div class="cursor-ring" id="CRING"></div>
 
-<div id="intro-overlay">
-    <div class="intro-content">
-        <p class="highlight-text">Hello World! 👋</p>
-        <h1 class="hero-name">I'm <span class="highlight">Nikhil Vishwakarma</span></h1>
-        <p class="hero-subtitle">Full-Stack Developer | AI/ML Enthusiast | Problem Solver</p>
-        <div class="intro-description">
-            <p>A passionate BCA student crafting digital solutions through code. I specialize in full-stack development, exploring AI/ML, and building projects that make a real impact.</p>
-            <p>My journey started with Python, and I've been constantly learning, innovating, and pushing the boundaries of what's possible with technology.</p>
-        </div>
-        <div class="code-stats">
-            <div class="stat-item">
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Projects Built</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">5+</div>
-                <div class="stat-label">Tech Stack</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">Dedication</div>
-            </div>
-        </div>
-        <div class="cta-buttons">
-            <a href="/projects" class="btn btn-primary">
-                <i class="fas fa-folder-open"></i> View My Work
-            </a>
-            <a href="/contact" class="btn btn-secondary">
-                <i class="fas fa-envelope"></i> Get In Touch
-            </a>
-        </div>
+<nav>
+  <div class="nav-logo">NV<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Portfolio — 2024</p>
+    <h1 class="hero-name"><span class="line1">Nikhil</span><span class="line2">Vishwakarma</span></h1>
+    <p class="hero-title"><strong>BCA Student</strong> &nbsp;·&nbsp; Aspiring Developer &nbsp;·&nbsp; Problem Solver</p>
+    <p class="hero-desc">Passionate about crafting digital experiences through code. Pursuing Bachelor of Computer Applications (2024–2027), exploring the intersection of logic, creativity and technology.</p>
+    <div class="hero-cta"><a href="#projects" class="btn-p">View Projects</a><a href="#contact" class="btn-o">Get in Touch</a></div>
+  </div>
+  <div class="hero-scroll"><span class="scroll-line"></span>Scroll to explore</div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text rv">
+      <p class="stag">About Me</p>
+      <h2 class="stitle">Building the Future,<br/>One Line at a Time</h2>
+      <div class="sline"></div>
+      <p>Hi, I'm Nikhil — a dedicated BCA student with a deep passion for computer science and software development. I believe that great software is born at the crossroads of technical precision and creative thinking.</p>
+      <p>From designing intuitive interfaces to building backend logic, I enjoy every layer of the development stack. Always eager to learn and take on projects that challenge me to grow.</p>
+      <p>Currently in my first year of BCA (Batch 2024–2027), actively building projects and sharpening my skills every day.</p>
+      <div class="stats">
+        <div class="sc rv d1"><span class="sn">1st</span><span class="sl">Year BCA</span></div>
+        <div class="sc rv d2"><span class="sn">6+</span><span class="sl">Projects</span></div>
+        <div class="sc rv d3"><span class="sn">5+</span><span class="sl">Technologies</span></div>
+      </div>
     </div>
+    <div class="rv d2" style="display:flex;justify-content:center;">
+      <div style="position:relative;">
+        <div style="position:absolute;top:-10px;right:-10px;width:50px;height:50px;border:2px solid var(--accent);opacity:.3;"></div>
+        <div class="about-av"><span class="av-init">NV</span></div>
+        <div style="position:absolute;bottom:-10px;left:-10px;width:50px;height:50px;border:2px solid var(--accent3);opacity:.3;"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skills-bg" id="skills">
+  <div class="rv"><p class="stag">Skills</p><h2 class="stitle">Technologies I Work With</h2><div class="sline"></div></div>
+  <div class="sg">
+    <div class="rv">
+      <p class="sgt">// Programming Languages</p>
+      <div class="si"><div class="sh"><span class="sn2">C / C++</span><span class="sp">80%</span></div><div class="sb"><div class="sf" data-w=".80"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">Python</span><span class="sp">75%</span></div><div class="sb"><div class="sf" data-w=".75"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">Java (Core)</span><span class="sp">65%</span></div><div class="sb"><div class="sf" data-w=".65"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">JavaScript</span><span class="sp">70%</span></div><div class="sb"><div class="sf" data-w=".70"></div></div></div>
+    </div>
+    <div class="rv d1">
+      <p class="sgt">// Web Development</p>
+      <div class="si"><div class="sh"><span class="sn2">HTML &amp; CSS</span><span class="sp">88%</span></div><div class="sb"><div class="sf" data-w=".88"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">PHP</span><span class="sp">60%</span></div><div class="sb"><div class="sf" data-w=".60"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">MySQL / SQL</span><span class="sp">72%</span></div><div class="sb"><div class="sf" data-w=".72"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">Bootstrap</span><span class="sp">78%</span></div><div class="sb"><div class="sf" data-w=".78"></div></div></div>
+    </div>
+    <div class="rv d2">
+      <p class="sgt">// Tools &amp; Concepts</p>
+      <div class="si"><div class="sh"><span class="sn2">Git &amp; GitHub</span><span class="sp">70%</span></div><div class="sb"><div class="sf" data-w=".70"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">Data Structures</span><span class="sp">75%</span></div><div class="sb"><div class="sf" data-w=".75"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">DBMS</span><span class="sp">68%</span></div><div class="sb"><div class="sf" data-w=".68"></div></div></div>
+      <div class="si"><div class="sh"><span class="sn2">OOP Concepts</span><span class="sp">80%</span></div><div class="sb"><div class="sf" data-w=".80"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="rv"><p class="stag">Projects</p><h2 class="stitle">Things I've Built</h2><div class="sline"></div></div>
+  <div class="pg">
+    <!-- LETSTALK FEATURED -->
+    <div class="pc rv" style="grid-column:span 2;background:linear-gradient(135deg,#0f1d35,#0a1628);border-color:rgba(0,229,255,.35);" onclick="openM('letstalk')">
+      <div class="ob">▶ &nbsp;LIVE DEMO</div>
+      <span class="emoji">💬</span>
+      <p class="pnum">Featured — Chat App</p>
+      <h3 class="ptitle" style="font-size:1.6rem;color:var(--accent);">LetsTalk</h3>
+      <p class="pdesc" style="max-width:500px;">A real-time chat application with rooms, multiple users, live typing indicators and chat history. Designed for seamless communication with a slick dark interface.</p>
+      <div class="tags"><span class="tg">JavaScript</span><span class="tg">Node.js</span><span class="tg">WebSocket</span><span class="tg">HTML/CSS</span><span class="tg" style="background:rgba(0,229,255,.15);color:#fff;border-color:var(--accent);">🔴 INTERACTIVE</span></div>
+    </div>
+    <div class="pc rv" onclick="openM('calc')">
+      <div class="ob">▶ OPEN APP</div>
+      <span class="emoji">🔢</span>
+      <p class="pnum">01 — Utility App</p>
+      <h3 class="ptitle">Scientific Calculator</h3>
+      <p class="pdesc">Feature-rich scientific calculator with sin, cos, tan, log, ln, √, powers, and expression history.</p>
+      <div class="tags"><span class="tg">JavaScript</span><span class="tg">Math</span><span class="tg">C++ Logic</span></div>
+    </div>
+    <div class="pc rv d1" onclick="openM('tasks')">
+      <div class="ob">▶ OPEN APP</div>
+      <span class="emoji">✅</span>
+      <p class="pnum">02 — Web App</p>
+      <h3 class="ptitle">Task Manager</h3>
+      <p class="pdesc">Responsive task manager with priority labels, deadlines, filters, and completion tracking with persistence.</p>
+      <div class="tags"><span class="tg">JavaScript</span><span class="tg">HTML/CSS</span><span class="tg">LocalStorage</span></div>
+    </div>
+    <div class="pc rv d2" onclick="openM('hospital')">
+      <div class="ob">▶ OPEN APP</div>
+      <span class="emoji">🏥</span>
+      <p class="pnum">03 — Management System</p>
+      <h3 class="ptitle">Hospital Management</h3>
+      <p class="pdesc">Full hospital dashboard with patient records, doctor schedules, appointments, and registration system.</p>
+      <div class="tags"><span class="tg">PHP</span><span class="tg">MySQL</span><span class="tg">DBMS</span></div>
+    </div>
+    <div class="pc rv">
+      <span class="emoji">🛒</span>
+      <p class="pnum">04 — Web App</p>
+      <h3 class="ptitle">E-Commerce Website</h3>
+      <p class="pdesc">Full-featured online store with product listings, cart, user auth, and admin panel using PHP &amp; MySQL.</p>
+      <div class="tags"><span class="tg">PHP</span><span class="tg">MySQL</span><span class="tg">Bootstrap</span></div>
+    </div>
+    <div class="pc rv d1">
+      <span class="emoji">📚</span>
+      <p class="pnum">05 — Desktop App</p>
+      <h3 class="ptitle">Library Management</h3>
+      <p class="pdesc">Desktop app for managing book records, member registration, and issue/return tracking in Java Swing.</p>
+      <div class="tags"><span class="tg">Java</span><span class="tg">Swing</span><span class="tg">JDBC</span><span class="tg">MySQL</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="edu-bg" id="education">
+  <div class="rv"><p class="stag">Education</p><h2 class="stitle">Academic Journey</h2><div class="sline"></div></div>
+  <div class="tl">
+    <div class="tli rv">
+      <div class="tld"></div>
+      <p class="tlp">2024 — 2027 &nbsp;<span style="color:var(--accent3);font-size:.7rem;">● Ongoing</span></p>
+      <h3 class="tlt">Bachelor of Computer Applications (BCA)</h3>
+      <p class="tls">University / College Name, Uttar Pradesh</p>
+      <p class="tldesc">Pursuing BCA with focus on programming, databases, web development, software engineering, and computer networks. Currently 1st Year (Batch 2024–2027). Actively building real-world projects and participating in college tech events.</p>
+    </div>
+    <div class="tli rv d1">
+      <div class="tld" style="background:var(--accent3);"></div>
+      <p class="tlp">Completed 2024</p>
+      <h3 class="tlt">Higher Secondary — Class XII <span class="cbse">CBSE</span></h3>
+      <p class="tls">Senior Secondary School, Uttar Pradesh</p>
+      <p class="tldesc">Completed Class 12 under CBSE board. Developed strong analytical and logical foundations that drive my approach to programming and problem-solving in computer science.</p>
+    </div>
+    <div class="tli rv d2">
+      <div class="tld" style="background:var(--accent2);"></div>
+      <p class="tlp">Completed 2022</p>
+      <h3 class="tlt">Secondary School — Class X <span class="cbse">CBSE</span></h3>
+      <p class="tls">High School, Uttar Pradesh</p>
+      <p class="tldesc">Completed Class 10 under CBSE board with distinction. Developed keen interest in mathematics and logical reasoning, laying the foundation for a career in computer science.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cg">
+    <div class="rv">
+      <p class="stag">Contact</p>
+      <h3 class="cit">Let's <span>Connect</span> &amp;<br/>Build Together</h3>
+      <p class="cid">Whether it's a project collaboration, internship opportunity, or just a conversation about tech — I'd love to hear from you!</p>
+      <div class="cls">
+        <a href="mailto:nikhil.vishwakarma@email.com" class="cl"><div class="cli">✉</div>nikhil.vishwakarma@email.com</a>
+        <a href="tel:+919876543210" class="cl"><div class="cli">📞</div>+91 98765 43210</a>
+        <a href="https://github.com/nikhilvishwakarma" class="cl" target="_blank"><div class="cli">⌥</div>github.com/nikhilvishwakarma</a>
+        <a href="https://linkedin.com/in/nikhilvishwakarma" class="cl" target="_blank"><div class="cli">in</div>linkedin.com/in/nikhilvishwakarma</a>
+      </div>
+    </div>
+    <div class="rv d1">
+      <div class="cf">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+          <div class="fg"><label>Name</label><input type="text" placeholder="Your name"/></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+        </div>
+        <div class="fg"><label>Subject</label><input type="text" placeholder="What's this about?"/></div>
+        <div class="fg"><label>Message</label><textarea placeholder="Tell me more..."></textarea></div>
+        <button class="btn-p" onclick="this.textContent='Sent! ✓';this.style.background='#00ff96';">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 Nikhil Vishwakarma</span>
+  <span>BCA 2024–2027 &nbsp;·&nbsp; Aspiring Developer</span>
+  <span>Made with ♥ &amp; Code</span>
+</footer>
+
+<!-- ======== MODAL: CALCULATOR ======== -->
+<div class="mo" id="M-calc">
+  <div class="mw" style="max-width:380px;">
+    <div class="mh">
+      <div class="mhtitle"><div class="mdots"><span class="dd1"></span><span class="dd2"></span><span class="dd3"></span></div>Scientific Calculator</div>
+      <button class="mc" onclick="closeM('calc')">✕ CLOSE</button>
+    </div>
+    <div class="mb">
+      <div class="cw">
+        <div class="calc">
+          <div class="cdisp">
+            <div class="cexpr" id="CE"></div>
+            <div class="cval" id="CV">0</div>
+            <div class="cmode" id="CM">DEG MODE</div>
+          </div>
+          <div class="cbtns">
+            <button class="cb cbf" onclick="CF('sin')">sin</button><button class="cb cbf" onclick="CF('cos')">cos</button><button class="cb cbf" onclick="CF('tan')">tan</button><button class="cb cbf" onclick="CF('log')">log</button><button class="cb cbf" onclick="CF('ln')">ln</button>
+            <button class="cb cbf" onclick="CF('sqrt')">√</button><button class="cb cbf" onclick="CF('sq')">x²</button><button class="cb cbf" onclick="CF('pow')">xʸ</button><button class="cb cbf" onclick="CI('π')">π</button><button class="cb cbf" onclick="CI('e')">e</button>
+            <button class="cb cbc" onclick="CC()">AC</button><button class="cb cbc" onclick="CD()">⌫</button><button class="cb cbf" onclick="CI('(')">(</button><button class="cb cbf" onclick="CI(')')">)</button><button class="cb cbo" onclick="CI('/')">÷</button>
+            <button class="cb cbn" onclick="CI('7')">7</button><button class="cb cbn" onclick="CI('8')">8</button><button class="cb cbn" onclick="CI('9')">9</button><button class="cb cbo" onclick="CI('*')">×</button><button class="cb cbf" onclick="CF('perc')">%</button>
+            <button class="cb cbn" onclick="CI('4')">4</button><button class="cb cbn" onclick="CI('5')">5</button><button class="cb cbn" onclick="CI('6')">6</button><button class="cb cbo" onclick="CI('-')">−</button><button class="cb cbf" onclick="CF('inv')">1/x</button>
+            <button class="cb cbn" onclick="CI('1')">1</button><button class="cb cbn" onclick="CI('2')">2</button><button class="cb cbn" onclick="CI('3')">3</button><button class="cb cbo" onclick="CI('+')">+</button><button class="cb cbf" onclick="TDEG()">DEG</button>
+            <button class="cb cbn cbz" onclick="CI('0')">0</button><button class="cb cbn" onclick="CI('.')">.</button><button class="cb cbe" onclick="CEQ()" style="grid-column:span 2;">=</button>
+          </div>
+          <div class="chist" id="CH"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<section id="skills" class="reveal">
-    <h2>Skills & Expertise</h2>
-    <p class="section-subtitle">Technologies I work with</p>
-
-    <!-- Tech Stack Marquee -->
-    <div class="tech-marquee-container">
-        <div class="tech-marquee">
-            <div class="tech-track">
-                <span class="tech-icon"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-icon"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="tech-icon"><i class="fab fa-react"></i> React</span>
-                <span class="tech-icon"><i class="fab fa-node"></i> Node.js</span>
-                <span class="tech-icon"><i class="fab fa-html5"></i> HTML5</span>
-                <span class="tech-icon"><i class="fab fa-css3-alt"></i> CSS3</span>
-                <span class="tech-icon"><i class="fab fa-docker"></i> Docker</span>
-                <span class="tech-icon"><i class="fab fa-git-alt"></i> Git</span>
-                <span class="tech-icon"><i class="fas fa-database"></i> SQL</span>
-                <span class="tech-icon"><i class="fab fa-aws"></i> AWS</span>
-                <!-- Duplicate for seamless loop -->
-                <span class="tech-icon"><i class="fab fa-python"></i> Python</span>
-                <span class="tech-icon"><i class="fab fa-js"></i> JavaScript</span>
-                <span class="tech-icon"><i class="fab fa-react"></i> React</span>
-                <span class="tech-icon"><i class="fab fa-node"></i> Node.js</span>
-                <span class="tech-icon"><i class="fab fa-html5"></i> HTML5</span>
-                <span class="tech-icon"><i class="fab fa-css3-alt"></i> CSS3</span>
-                <span class="tech-icon"><i class="fab fa-docker"></i> Docker</span>
-                <span class="tech-icon"><i class="fab fa-git-alt"></i> Git</span>
-                <span class="tech-icon"><i class="fas fa-database"></i> SQL</span>
-                <span class="tech-icon"><i class="fab fa-aws"></i> AWS</span>
-            </div>
-        </div>
+<!-- ======== MODAL: TASKS ======== -->
+<div class="mo" id="M-tasks">
+  <div class="mw" style="max-width:700px;">
+    <div class="mh">
+      <div class="mhtitle"><div class="mdots"><span class="dd1"></span><span class="dd2"></span><span class="dd3"></span></div>Task Manager</div>
+      <button class="mc" onclick="closeM('tasks')">✕ CLOSE</button>
     </div>
-
-    <div class="skills-grid">
-        <div class="skills-category tilt-card">
-            <h3><i class="fas fa-code"></i> Programming</h3>
-            <ul class="skills-list">
-                <li><i class="fab fa-python"></i> Python</li>
-                <li><i class="fas fa-code"></i> C</li>
-                <li><i class="fab fa-js"></i> JavaScript</li>
-            </ul>
+    <div class="mb">
+      <div class="tw">
+        <div class="thead2">
+          <input class="ti" id="TI" type="text" placeholder="Add a new task..." onkeydown="if(event.key==='Enter')AT()"/>
+          <select class="tsel" id="TP"><option value="high">🔴 High</option><option value="med" selected>🟡 Medium</option><option value="low">🔵 Low</option></select>
+          <input class="ti" id="TD" type="date" style="width:130px;"/>
+          <button class="tadd" onclick="AT()">+ ADD</button>
         </div>
-        <div class="skills-category tilt-card">
-            <h3><i class="fas fa-laptop-code"></i> Web Development</h3>
-            <ul class="skills-list">
-                <li><i class="fab fa-html5"></i> HTML5</li>
-                <li><i class="fab fa-css3-alt"></i> CSS3</li>
-                <li><i class="fab fa-flask"></i> Flask</li>
-                <li><i class="fas fa-database"></i> SQL</li>
-            </ul>
+        <div class="tstats"><span class="ts">Total: <b id="TST">0</b></span><span class="ts">Done: <b id="TSD" style="color:#00ff96;">0</b></span><span class="ts">Pending: <b id="TSP" style="color:#ffc850;">0</b></span></div>
+        <div class="tfilts">
+          <button class="tfb act" onclick="FT('all',this)">All</button>
+          <button class="tfb" onclick="FT('pending',this)">Pending</button>
+          <button class="tfb" onclick="FT('done',this)">Done</button>
+          <button class="tfb" onclick="FT('high',this)">🔴 High</button>
+          <button class="tfb" onclick="FT('med',this)">🟡 Med</button>
+          <button class="tfb" onclick="FT('low',this)">🔵 Low</button>
         </div>
-        <div class="skills-category tilt-card">
-            <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
-            <ul class="skills-list">
-                <li><i class="fab fa-git-alt"></i> Git</li>
-                <li><i class="fab fa-github"></i> GitHub</li>
-                <li><i class="fas fa-terminal"></i> Command Line</li>
-                <li><i class="fas fa-database"></i> MySQL</li>
-            </ul>
-        </div>
-        <div class="skills-category tilt-card">
-            <h3><i class="fas fa-brain"></i> Learning</h3>
-            <ul class="skills-list">
-                <li><i class="fas fa-robot"></i> AI/ML</li>
-                <li><i class="fab fa-react"></i> React</li>
-                <li><i class="fas fa-network-wired"></i> APIs</li>
-            </ul>
-        </div>
+        <div class="tlist" id="TL"></div>
+      </div>
     </div>
-</section>
+  </div>
+</div>
 
-<section id="projects" class="reveal">
-    <h2>Featured Projects</h2>
-    <div class="project-list">
-    <p class="section-subtitle">Recent projects showcasing my skills</p>
-        <div class="project-card hover-up tilt-card">
-            <div class="card-glow"></div>
-            <div class="project-icon"><i class="fas fa-cloud"></i></div>
-            <h3>Weather App</h3>
-            <p>Real-time weather dashboard with city search, live weather data, and dynamic weather icons. Built with vanilla JavaScript and a Python Flask backend.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Python</span>
-                <span class="tech-tag">Flask</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">API</span>
-            </div>
-            <div class="project-links">
-                <a href="/projects" class="project-link"><i class="fas fa-play-circle"></i> Try Demo</a>
-            </div>
-        </div>
-        <div class="project-card hover-up tilt-card">
-            <div class="card-glow"></div>
-            <div class="project-icon"><i class="fas fa-tasks"></i></div>
-            <h3>Task Manager</h3>
-            <p>Full-featured task management system with persistent storage. Add, complete, and delete tasks with a clean interface. Data persists across sessions.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Flask</span>
-                <span class="tech-tag">JavaScript</span>
-                <span class="tech-tag">JSON</span>
-                <span class="tech-tag">REST API</span>
-            </div>
-            <div class="project-links">
-                <a href="/projects" class="project-link"><i class="fas fa-play-circle"></i> Try Demo</a>
-            </div>
-        </div>
-        <div class="project-card hover-up tilt-card">
-            <div class="card-glow"></div>
-            <div class="project-icon"><i class="fas fa-briefcase"></i></div>
-            <h3>Portfolio Website</h3>
-            <p>Modern, responsive portfolio built with Flask and vanilla JavaScript. Features smooth animations, dark mode support, and a comprehensive project showcase.</p>
-            <div class="project-tech">
-                <span class="tech-tag">Flask</span>
-                <span class="tech-tag">HTML5</span>
-                <span class="tech-tag">CSS3</span>
-                <span class="tech-tag">JavaScript</span>
-            </div>
-            <div class="project-links">
-                <a href="/projects" class="project-link"><i class="fas fa-arrow-right"></i> View All</a>
-            </div>
-        </div>
+<!-- ======== MODAL: HOSPITAL ======== -->
+<div class="mo" id="M-hospital">
+  <div class="mw" style="max-width:900px;">
+    <div class="mh">
+      <div class="mhtitle"><div class="mdots"><span class="dd1"></span><span class="dd2"></span><span class="dd3"></span></div>Hospital Management System</div>
+      <button class="mc" onclick="closeM('hospital')">✕ CLOSE</button>
     </div>
-</section>
-
-    <h2>Let's Work Together</h2>
-    <p class="section-subtitle">I'm always open to new opportunities and collaborations</p>
-    <div class="contact-quick">
-        <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <h3>Email</h3>
-            <a href="mailto:vish.nikhil01@gmail.com">vish.nikhil01@gmail.com</a>
+    <div class="mb" style="overflow:hidden;">
+      <div class="hms">
+        <div class="hsb">
+          <div class="hni act" onclick="HN('dash',this)"><span>📊</span> Dashboard</div>
+          <div class="hni" onclick="HN('pat',this)"><span>👤</span> Patients</div>
+          <div class="hni" onclick="HN('doc',this)"><span>👨‍⚕️</span> Doctors</div>
+          <div class="hni" onclick="HN('appt',this)"><span>📅</span> Appointments</div>
+          <div class="hni" onclick="HN('add',this)"><span>➕</span> Add Patient</div>
         </div>
-        <div class="contact-item">
-            <i class="fab fa-github"></i>
-            <h3>GitHub</h3>
-            <a href="https://github.com/nikhilwin" target="_blank">github.com/nikhilwin</a>
+        <div class="hm">
+          <div class="hp act" id="H-dash">
+            <div class="hpt">📊 Dashboard Overview</div>
+            <div class="hcards">
+              <div class="hcard"><span class="hcn" id="HTP">24</span><span class="hcl">Total Patients</span></div>
+              <div class="hcard"><span class="hcn">6</span><span class="hcl">Doctors</span></div>
+              <div class="hcard"><span class="hcn" id="HTA">8</span><span class="hcl">Today's Appts</span></div>
+              <div class="hcard"><span class="hcn">3</span><span class="hcl">Admitted</span></div>
+            </div>
+            <p style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3);margin-bottom:1rem;">// Recent Activity</p>
+            <table class="htable"><thead><tr><th>Time</th><th>Event</th><th>Patient</th><th>Status</th></tr></thead><tbody>
+              <tr><td>09:15 AM</td><td>Appointment</td><td>Ramesh Kumar</td><td><span class="hbdg ba">Active</span></td></tr>
+              <tr><td>10:00 AM</td><td>Discharge</td><td>Priya Sharma</td><td><span class="hbdg bd">Done</span></td></tr>
+              <tr><td>11:30 AM</td><td>Admission</td><td>Suresh Yadav</td><td><span class="hbdg bp">Pending</span></td></tr>
+              <tr><td>02:00 PM</td><td>Lab Report</td><td>Anjali Singh</td><td><span class="hbdg ba">Active</span></td></tr>
+            </tbody></table>
+          </div>
+          <div class="hp" id="H-pat">
+            <div class="hpt">👤 Patient Records</div>
+            <table class="htable"><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Condition</th><th>Doctor</th><th>Status</th></tr></thead><tbody id="HPB"></tbody></table>
+          </div>
+          <div class="hp" id="H-doc">
+            <div class="hpt">👨‍⚕️ Doctors</div>
+            <table class="htable"><thead><tr><th>ID</th><th>Name</th><th>Specialization</th><th>Exp</th><th>Status</th></tr></thead><tbody>
+              <tr><td>D001</td><td>Dr. Anil Gupta</td><td>Cardiology</td><td>12 yrs</td><td><span class="hbdg ba">Available</span></td></tr>
+              <tr><td>D002</td><td>Dr. Sunita Verma</td><td>Neurology</td><td>8 yrs</td><td><span class="hbdg ba">Available</span></td></tr>
+              <tr><td>D003</td><td>Dr. Rajesh Tiwari</td><td>Orthopedics</td><td>15 yrs</td><td><span class="hbdg bp">On Leave</span></td></tr>
+              <tr><td>D004</td><td>Dr. Meena Joshi</td><td>Pediatrics</td><td>6 yrs</td><td><span class="hbdg ba">Available</span></td></tr>
+              <tr><td>D005</td><td>Dr. Vivek Mishra</td><td>General Medicine</td><td>10 yrs</td><td><span class="hbdg ba">Available</span></td></tr>
+              <tr><td>D006</td><td>Dr. Pooja Rao</td><td>Dermatology</td><td>5 yrs</td><td><span class="hbdg bd">Busy</span></td></tr>
+            </tbody></table>
+          </div>
+          <div class="hp" id="H-appt">
+            <div class="hpt">📅 Today's Appointments</div>
+            <table class="htable"><thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Type</th><th>Status</th></tr></thead><tbody>
+              <tr><td>09:00 AM</td><td>Ramesh Kumar</td><td>Dr. Anil Gupta</td><td>Checkup</td><td><span class="hbdg ba">In Progress</span></td></tr>
+              <tr><td>09:30 AM</td><td>Kavita Sharma</td><td>Dr. Sunita Verma</td><td>Follow-up</td><td><span class="hbdg bd">Done</span></td></tr>
+              <tr><td>10:15 AM</td><td>Mohan Lal</td><td>Dr. Meena Joshi</td><td>Consultation</td><td><span class="hbdg bp">Waiting</span></td></tr>
+              <tr><td>11:00 AM</td><td>Sita Devi</td><td>Dr. Vivek Mishra</td><td>Emergency</td><td><span class="hbdg ba">Urgent</span></td></tr>
+              <tr><td>02:00 PM</td><td>Arjun Singh</td><td>Dr. Pooja Rao</td><td>Checkup</td><td><span class="hbdg bp">Scheduled</span></td></tr>
+            </tbody></table>
+          </div>
+          <div class="hp" id="H-add">
+            <div class="hpt">➕ Register New Patient</div>
+            <div class="hform">
+              <div><label class="hl">Patient Name</label><input class="hi" id="HPN" placeholder="Full name"/></div>
+              <div><label class="hl">Age</label><input class="hi" id="HPA" type="number" placeholder="Age"/></div>
+              <div><label class="hl">Gender</label><select class="hi" id="HPG"><option>Male</option><option>Female</option><option>Other</option></select></div>
+              <div><label class="hl">Blood Group</label><select class="hi" id="HPB2"><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
+              <div class="hff"><label class="hl">Condition / Diagnosis</label><input class="hi" id="HPC" placeholder="e.g. Fever, Fracture, Checkup..."/></div>
+              <div><label class="hl">Assign Doctor</label><select class="hi" id="HPD"><option>Dr. Anil Gupta</option><option>Dr. Sunita Verma</option><option>Dr. Meena Joshi</option><option>Dr. Vivek Mishra</option><option>Dr. Pooja Rao</option></select></div>
+              <div><label class="hl">Admission Type</label><select class="hi" id="HPT"><option>OPD</option><option>IPD</option><option>Emergency</option></select></div>
+            </div>
+            <button class="hsub" onclick="ADP()">REGISTER PATIENT</button>
+            <p class="hmsg" id="HM">✓ Patient registered successfully!</p>
+          </div>
         </div>
-        <div class="contact-item">
-            <i class="fab fa-linkedin"></i>
-            <h3>LinkedIn</h3>
-            <a href="https://www.linkedin.com/in/nikhil-vishwakarma-a755082bb/" target="_blank">Connect with me</a>
-        </div>
+      </div>
     </div>
-    <div class="contact-cta">
-        <a href="/contact" class="btn btn-primary btn-large">
-            <i class="fas fa-envelope"></i> Send me a Message
-        </a>
+  </div>
+</div>
+
+<!-- ======== MODAL: LETSTALK ======== -->
+<div class="mo" id="M-letstalk">
+  <div class="mw" style="max-width:900px;">
+    <div class="mh">
+      <div class="mhtitle"><div class="mdots"><span class="dd1"></span><span class="dd2"></span><span class="dd3"></span></div><span style="color:var(--accent);font-size:1.1rem;">LetsTalk</span> <span style="font-size:.7rem;color:var(--muted);margin-left:.5rem;">— Real-time Chat</span></div>
+      <button class="mc" onclick="closeM('letstalk')">✕ CLOSE</button>
     </div>
-</section>
-{% endblock %}
+    <div class="mb" style="overflow:hidden;">
+      <div class="chat">
+        <div class="csb">
+          <div class="cbrand"><div class="cbn2">LetsTalk</div><div class="cbsub">// CHAT APP</div></div>
+          <div class="crooms">
+            <div class="croom actr" onclick="SR('general',this)"><span class="crdot don"></span><span class="crname"># general</span></div>
+            <div class="croom" onclick="SR('tech',this)"><span class="crdot don"></span><span class="crname"># tech-talk</span></div>
+            <div class="croom" onclick="SR('bca',this)"><span class="crdot daw"></span><span class="crname"># bca-students</span></div>
+            <div class="croom" onclick="SR('random',this)"><span class="crdot don"></span><span class="crname"># random</span></div>
+            <div class="croom" onclick="SR('dm',this)"><span class="crdot dof"></span><span class="crname">@ Priya DM</span></div>
+          </div>
+        </div>
+        <div class="cmain">
+          <div class="ctop"><span class="crdot don"></span><span class="ctoprn" id="CRN"># general</span><span class="ctopst">● 12 online</span></div>
+          <div class="cmsgs" id="CMSGS"></div>
+          <div class="ctyping" id="CTY">someone is typing...</div>
+          <div class="cinbar">
+            <input class="cinput" id="CINP" placeholder="Message #general..." onkeydown="if(event.key==='Enter')SC()"/>
+            <button class="csend" onclick="SC()">SEND →</button>
+          </div>
+        </div>
+        <div class="cusers">
+          <div class="cutt">Online — 12</div>
+          <div class="cuu"><div class="cuav" style="background:rgba(0,229,255,.15);">NV</div><span class="cuname" style="color:var(--accent);">Nikhil</span></div>
+          <div class="cuu"><div class="cuav">PR</div><span class="cuname">Priya</span></div>
+          <div class="cuu"><div class="cuav">AK</div><span class="cuname">Aakash</span></div>
+          <div class="cuu"><div class="cuav">SM</div><span class="cuname">Simran</span></div>
+          <div class="cuu"><div class="cuav">RV</div><span class="cuname">Rahul</span></div>
+          <div class="cuu"><div class="cuav" style="opacity:.4;">KS</div><span class="cuname" style="opacity:.4;">Kavya</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-{% block styles %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/intro.css', v='pro') }}">
-{% endblock %}
+<script>
+/* === CURSOR === */
+const CUR=document.getElementById('CUR'),CRING=document.getElementById('CRING');
+let rx=0,ry=0,mx=0,my=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;CUR.style.left=mx+'px';CUR.style.top=my+'px';});
+(function animR(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;CRING.style.left=rx+'px';CRING.style.top=ry+'px';requestAnimationFrame(animR);})();
 
-{% block scripts %}
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-<script src="{{ url_for('static', filename='js/intro.js', v='pro') }}"></script>
-{% endblock %}
+/* === REVEAL === */
+const rvEls=document.querySelectorAll('.rv');
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1}).observe||rvEls.forEach(r=>r.classList.add('vis'));
+const rvO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+rvEls.forEach(r=>rvO.observe(r));
+
+/* === SKILL BARS === */
+const sgEls=document.querySelectorAll('[data-w]');
+const skO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.style.transform='scaleX('+e.target.dataset.w+')';}),{threshold:.3});
+sgEls.forEach(b=>skO.observe(b));
+
+/* === MODALS === */
+function openM(id){document.getElementById('M-'+id).classList.add('open');document.body.style.overflow='hidden';if(id==='tasks')RT();if(id==='hospital')RP();if(id==='letstalk')IC();}
+function closeM(id){document.getElementById('M-'+id).classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.mo').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeM(m.id.replace('M-',''));}));
+
+/* =========== CALCULATOR =========== */
+let cex='',cdeg=true,chist=[];
+function CI(v){cex+=v;UC();}
+function CC(){cex='';UC();}
+function CD(){cex=cex.slice(0,-1);UC();}
+function TDEG(){cdeg=!cdeg;document.getElementById('CM').textContent=cdeg?'DEG MODE':'RAD MODE';}
+function CF(fn){
+  let v=cex?parseFloat(cex):0;
+  const toR=x=>cdeg?x*Math.PI/180:x;
+  let r;
+  switch(fn){
+    case'sin':r=Math.sin(toR(v));cex=`sin(${cex})`;break;
+    case'cos':r=Math.cos(toR(v));cex=`cos(${cex})`;break;
+    case'tan':r=Math.tan(toR(v));cex=`tan(${cex})`;break;
+    case'log':r=Math.log10(v);cex=`log(${cex})`;break;
+    case'ln':r=Math.log(v);cex=`ln(${cex})`;break;
+    case'sqrt':r=Math.sqrt(v);cex=`√(${cex})`;break;
+    case'sq':r=v*v;cex=`(${cex})²`;break;
+    case'pow':cex+='**';UC();return;
+    case'inv':r=1/v;cex=`1/(${cex})`;break;
+    case'perc':r=v/100;cex=`(${cex})%`;break;
+    default:return;
+  }
+  const rd=+r.toFixed(10);
+  document.getElementById('CV').textContent=rd;
+  chist.unshift(cex+' = '+rd);if(chist.length>8)chist.pop();
+  cex=''+rd;UCH();
+}
+function CEQ(){
+  try{
+    let expr=cex.replace(/π/g,'Math.PI').replace(/e(?![0-9])/g,'Math.E');
+    let r=Function('"use strict";return ('+expr+')')();
+    const rd=+parseFloat(r).toFixed(10);
+    chist.unshift(cex+' = '+rd);if(chist.length>8)chist.pop();UCH();
+    document.getElementById('CE').textContent=cex+' =';
+    cex=''+rd;document.getElementById('CV').textContent=rd;
+  }catch(e){document.getElementById('CV').textContent='Error';cex='';}
+}
+function UC(){
+  document.getElementById('CE').textContent=cex;
+  document.getElementById('CV').textContent=cex||'0';
+}
+function UCH(){const h=document.getElementById('CH');h.innerHTML=chist.slice(0,5).map(x=>`<p>${x}</p>`).join('');}
+
+/* =========== TASKS =========== */
+let tasks=JSON.parse(localStorage.getItem('nv_tasks2')||'null')||[
+  {id:1,text:'Build Portfolio Website',priority:'high',done:true,due:'2024-12-01'},
+  {id:2,text:'Complete DBMS Assignment',priority:'high',done:false,due:'2024-12-10'},
+  {id:3,text:'Practice DSA Problems',priority:'med',done:false,due:''},
+  {id:4,text:'Learn PHP & MySQL',priority:'med',done:false,due:'2024-12-15'},
+  {id:5,text:'Submit BCA Project Report',priority:'high',done:false,due:'2024-12-20'},
+  {id:6,text:'Study Computer Networks Chapter 3',priority:'low',done:false,due:''},
+];
+let tf='all';
+function ST(){localStorage.setItem('nv_tasks2',JSON.stringify(tasks));}
+function AT(){
+  const txt=document.getElementById('TI').value.trim();if(!txt)return;
+  tasks.push({id:Date.now(),text:txt,priority:document.getElementById('TP').value,done:false,due:document.getElementById('TD').value});
+  document.getElementById('TI').value='';document.getElementById('TD').value='';
+  ST();RT();
+}
+function TT(id){const t=tasks.find(t=>t.id===id);if(t)t.done=!t.done;ST();RT();}
+function DT(id){tasks=tasks.filter(t=>t.id!==id);ST();RT();}
+function FT(f,btn){tf=f;document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('act'));btn.classList.add('act');RT();}
+function RT(){
+  let fl=tasks;
+  if(tf==='pending')fl=tasks.filter(t=>!t.done);
+  else if(tf==='done')fl=tasks.filter(t=>t.done);
+  else if(['high','med','low'].includes(tf))fl=tasks.filter(t=>t.priority===tf);
+  document.getElementById('TST').textContent=tasks.length;
+  document.getElementById('TSD').textContent=tasks.filter(t=>t.done).length;
+  document.getElementById('TSP').textContent=tasks.filter(t=>!t.done).length;
+  const list=document.getElementById('TL');
+  if(!fl.length){list.innerHTML='<div class="tempty">No tasks here. Add one above!</div>';return;}
+  list.innerHTML=fl.map(t=>`
+    <div class="titem${t.done?' done':''}">
+      <div class="tck${t.done?' ck':''}" onclick="TT(${t.id})">${t.done?'✓':''}</div>
+      <span class="ttext">${t.text}</span>
+      <span class="tpr p${t.priority[0]}">${t.priority}</span>
+      ${t.due?`<span style="font-family:'DM Mono',monospace;font-size:.68rem;color:var(--muted);">${t.due}</span>`:''}
+      <button class="tdel" onclick="DT(${t.id})">🗑</button>
+    </div>`).join('');
+}
+
+/* =========== HOSPITAL =========== */
+let hpats=[
+  {id:'P001',name:'Ramesh Kumar',age:45,cond:'Hypertension',doc:'Dr. Anil Gupta',st:'active'},
+  {id:'P002',name:'Priya Sharma',age:32,cond:'Diabetes',doc:'Dr. Vivek Mishra',st:'done'},
+  {id:'P003',name:'Suresh Yadav',age:58,cond:'Heart Disease',doc:'Dr. Anil Gupta',st:'pending'},
+  {id:'P004',name:'Anjali Singh',age:28,cond:'Fever',doc:'Dr. Meena Joshi',st:'active'},
+  {id:'P005',name:'Mohan Lal',age:65,cond:'Arthritis',doc:'Dr. Sunita Verma',st:'pending'},
+  {id:'P006',name:'Kavita Rani',age:40,cond:'Skin Allergy',doc:'Dr. Pooja Rao',st:'active'},
+];
+function RP(){
+  document.getElementById('HPB').innerHTML=hpats.map(p=>`<tr><td>${p.id}</td><td>${p.name}</td><td>${p.age}</td><td>${p.cond}</td><td>${p.doc}</td><td><span class="hbdg ${p.st==='active'?'ba':p.st==='done'?'bd':'bp'}">${p.st}</span></td></tr>`).join('');
+  document.getElementById('HTP').textContent=hpats.length;
+}
+function HN(pg,el){
+  document.querySelectorAll('.hp').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.hni').forEach(n=>n.classList.remove('act'));
+  document.getElementById('H-'+pg).classList.add('act');el.classList.add('act');
+}
+function ADP(){
+  const name=document.getElementById('HPN').value.trim();if(!name){alert('Enter patient name');return;}
+  hpats.push({id:'P'+String(hpats.length+1).padStart(3,'0'),name,age:document.getElementById('HPA').value||'N/A',cond:document.getElementById('HPC').value||'General Checkup',doc:document.getElementById('HPD').value,st:'pending'});
+  const m=document.getElementById('HM');m.style.display='block';
+  document.getElementById('HTP').textContent=hpats.length;
+  document.getElementById('HTA').textContent=parseInt(document.getElementById('HTA').textContent)+1;
+  document.getElementById('HPN').value='';document.getElementById('HPA').value='';document.getElementById('HPC').value='';
+  setTimeout(()=>m.style.display='none',2500);
+}
+
+/* =========== LETSTALK =========== */
+const rooms={
+  general:[
+    {u:'Priya',me:false,msg:'Hey everyone! 👋',t:'10:02 AM'},
+    {u:'Aakash',me:false,msg:'yo whats up',t:'10:03 AM'},
+    {u:'Nikhil',me:true,msg:'Hey! Just built my new portfolio 🚀',t:'10:05 AM'},
+    {u:'Simran',me:false,msg:'OMG that looks so cool!! 🔥',t:'10:06 AM'},
+    {u:'Priya',me:false,msg:'The LetsTalk chat feature is amazing 💬',t:'10:07 AM'},
+  ],
+  tech:[
+    {u:'Rahul',me:false,msg:'Anyone learning React these days?',t:'09:45 AM'},
+    {u:'Nikhil',me:true,msg:'Yeah! Building some cool projects 🛠',t:'09:46 AM'},
+    {u:'Aakash',me:false,msg:'I prefer Vue tbh 😅',t:'09:48 AM'},
+    {u:'Simran',me:false,msg:'Try Next.js — it\'s amazing',t:'09:50 AM'},
+  ],
+  bca:[
+    {u:'Simran',me:false,msg:'Anyone done the DBMS assignment yet? 😭',t:'08:30 AM'},
+    {u:'Nikhil',me:true,msg:'Almost done. Working on the ER diagram',t:'08:35 AM'},
+    {u:'Priya',me:false,msg:'Study group tomorrow? 📚',t:'08:36 AM'},
+  ],
+  random:[
+    {u:'Aakash',me:false,msg:'What\'s everyone having for lunch? 🍕',t:'12:00 PM'},
+    {u:'Nikhil',me:true,msg:'Dal rice as always 😂',t:'12:01 PM'},
+    {u:'Rahul',me:false,msg:'Lmaooo same bro',t:'12:02 PM'},
+  ],
+  dm:[
+    {u:'Priya',me:false,msg:'Hey Nikhil! Your portfolio is absolutely 🔥',t:'11:00 AM'},
+    {u:'Nikhil',me:true,msg:'Thanks Priya! Worked really hard on it 😊',t:'11:01 AM'},
+    {u:'Priya',me:false,msg:'The LetsTalk part is so clever 💬',t:'11:02 AM'},
+  ]
+};
+const botR={
+  general:['That\'s awesome! 🎉','Totally agree!','Haha true 😂','Let me check that out!','Nice one Nikhil! 🔥','GG 💯'],
+  tech:['JS is wild lol','Tried TypeScript?','React vs Vue forever 😄','That\'s a solid approach!','Check out Vite btw!'],
+  bca:['Same bro 😭','Study group sounds great!','Prof gave too much work','Share your notes pls 🙏'],
+  random:['Lmao 😂','True story bro','Facts 💯','Hahaha same here!','LMAOO'],
+  dm:['Totally agree 😊','You\'re too kind!','We should collab sometime!','Let me know when you\'re free!']
+};
+let curRoom='general';
+function IC(){RCM();}
+function RCM(){
+  const msgs=document.getElementById('CMSGS');
+  const r=rooms[curRoom]||[];
+  msgs.innerHTML=r.map(m=>`
+    <div class="cmsg ${m.me?'me':'them'}">
+      ${!m.me?`<span style="font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent3);margin-bottom:.2rem;">${m.u}</span>`:''}
+      <div class="cbub">${m.msg}</div>
+      <span class="cmeta">${m.t}</span>
+    </div>`).join('');
+  msgs.scrollTop=msgs.scrollHeight;
+  document.getElementById('CINP').placeholder='Message '+document.getElementById('CRN').textContent+'...';
+}
+function SR(room,el){
+  curRoom=room;
+  document.querySelectorAll('.croom').forEach(r=>r.classList.remove('actr'));
+  el.classList.add('actr');
+  document.getElementById('CRN').textContent=room==='dm'?'@ Priya DM':'# '+room;
+  RCM();
+}
+function SC(){
+  const inp=document.getElementById('CINP');
+  const txt=inp.value.trim();if(!txt)return;
+  const now=new Date();
+  const ts=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  if(!rooms[curRoom])rooms[curRoom]=[];
+  rooms[curRoom].push({u:'Nikhil',me:true,msg:txt,t:ts});
+  inp.value='';RCM();
+  const bots=['Priya','Aakash','Simran','Rahul'];
+  const bot=bots[Math.floor(Math.random()*bots.length)];
+  const reps=botR[curRoom]||botR.general;
+  const rep=reps[Math.floor(Math.random()*reps.length)];
+  const ty=document.getElementById('CTY');
+  ty.textContent=bot+' is typing...';ty.classList.add('show');
+  setTimeout(()=>{ty.classList.remove('show');rooms[curRoom].push({u:bot,me:false,msg:rep,t:ts});RCM();},1000+Math.random()*1200);
+}
+</script>
+</body>
+</html>

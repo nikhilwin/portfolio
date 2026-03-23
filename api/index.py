@@ -5,7 +5,7 @@ import os
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
 # Store tasks in a simple JSON file
-TASKS_FILE = 'tasks.json'
+TASKS_FILE = '/tmp/tasks.json'
 
 def load_tasks():
     if os.path.exists(TASKS_FILE):
